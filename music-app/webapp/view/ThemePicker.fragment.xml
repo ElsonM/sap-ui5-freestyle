@@ -1,0 +1,36 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+    <Popover
+        id="themePickerPopover"
+        title="App Theme"
+        placement="VerticalPreferredBottom"
+        contentWidth="16rem"
+        showHeader="true">
+        <content>
+            <FlexBox wrap="Wrap" justifyContent="SpaceAround" class="themePickerContent">
+                <VBox alignItems="Center" class="themeSwatchWrapper">
+                    <Button id="swatchBlue"   type="Transparent" class="themeSwatchBtn themeSwatchBlue"   press="onSelectTheme" tooltip="Ocean Blue"   app:themeId="blue"/>
+                    <Text text="Blue"    class="themeSwatchLabel"/>
+                </VBox>
+                <VBox alignItems="Center" class="themeSwatchWrapper">
+                    <Button id="swatchPurple" type="Transparent" class="themeSwatchBtn themeSwatchPurple" press="onSelectTheme" tooltip="Purple Night" app:themeId="purple"/>
+                    <Text text="Purple"  class="themeSwatchLabel"/>
+                </VBox>
+                <VBox alignItems="Center" class="themeSwatchWrapper">
+                    <Button id="swatchGreen"  type="Transparent" class="themeSwatchBtn themeSwatchGreen"  press="onSelectTheme" tooltip="Emerald"      app:themeId="green"/>
+                    <Text text="Emerald" class="themeSwatchLabel"/>
+                </VBox>
+                <VBox alignItems="Center" class="themeSwatchWrapper">
+                    <Button id="swatchRed"    type="Transparent" class="themeSwatchBtn themeSwatchRed"    press="onSelectTheme" tooltip="Sunset"       app:themeId="red"/>
+                    <Text text="Sunset"  class="themeSwatchLabel"/>
+                </VBox>
+                <VBox alignItems="Center" class="themeSwatchWrapper">
+                    <Button id="swatchAmber"  type="Transparent" class="themeSwatchBtn themeSwatchAmber"  press="onSelectTheme" tooltip="Gold"         app:themeId="amber"/>
+                    <Text text="Gold"    class="themeSwatchLabel"/>
+                </VBox>
+            </FlexBox>
+        </content>
+    </Popover>
+</core:FragmentDefinition>

@@ -1,0 +1,95 @@
+<mvc:View xmlns:f="sap.f" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core" controllerName="at.clouddna.music.controller.App" height="100%" displayBlock="true">
+    <Page showHeader="false" enableScrolling="false" showFooter="{player>/visible}" class="musicAppShell">
+        <content>
+            <f:FlexibleColumnLayout id="fcl" layout="{ui>/layout}" class="musicFCL"/>
+        </content>
+        <footer>
+            <Bar class="miniPlayerBar">
+                <contentLeft>
+                    <Avatar
+                        src="{player>/currentTrack/image}"
+                        displaySize="S"
+                        displayShape="Square"
+                        fallbackIcon="sap-icon://music"
+                        showBorder="true"
+                        class="miniPlayerAvatar"/>
+                    <VBox justifyContent="Center" class="miniPlayerTrackInfo">
+                        <HBox alignItems="Center" class="trackNameRow">
+                            <Text text="{player>/currentTrack/name}" class="playerTrackName" maxLines="1" wrapping="false"/>
+                            <Text
+                                text="{= '(' + (${player>/queueIndex} + 1) + '/' + ${player>/queue}.length + ')'}"
+                                class="playerQueueBadge"
+                                visible="{= ${player>/queueIndex} >= 0}"/>
+                        </HBox>
+                        <Text
+                            text="{= (${player>/currentTrack/artistName} || '') + (${player>/currentTrack/albumName} ? ' · ' + ${player>/currentTrack/albumName} : '')}"
+                            class="playerArtistName"
+                            maxLines="1"
+                            wrapping="false"/>
+                    </VBox>
+                </contentLeft>
+                <contentMiddle>
+                    <HBox alignItems="Center" justifyContent="Center">
+                        <ToggleButton
+                            icon="sap-icon://sort"
+                            pressed="{player>/shuffleOn}"
+                            type="Transparent"
+                            press="onToggleShuffle"
+                            tooltip="{= ${player>/shuffleOn} ? 'Disable shuffle' : 'Enable shuffle' }"
+                            class="playerModeBtn"/>
+                        <Button icon="sap-icon://media-rewind" press="onPrev" type="Transparent" tooltip="Previous"/>
+                        <Button
+                            icon="{= ${player>/isLoading} ? 'sap-icon://synchronize' : (${player>/isPlaying} ? 'sap-icon://media-pause' : 'sap-icon://media-play') }"
+                            press="onTogglePlay"
+                            type="Emphasized"
+                            enabled="{= !${player>/isLoading} }"
+                            tooltip="Play / Pause"
+                            class="playButton miniPlayButton"/>
+                        <Button icon="sap-icon://media-forward" press="onNext" type="Transparent" tooltip="Next"/>
+                        <ToggleButton
+                            icon="{= ${player>/repeatMode} === 'one' ? 'sap-icon://repost' : 'sap-icon://refresh' }"
+                            pressed="{= ${player>/repeatMode} !== 'off' }"
+                            type="Transparent"
+                            press="onToggleRepeat"
+                            tooltip="{= ${player>/repeatMode} === 'off' ? 'Enable repeat' : (${player>/repeatMode} === 'all' ? 'Repeat current track' : 'Disable repeat') }"
+                            class="playerModeBtn"/>
+                    </HBox>
+                </contentMiddle>
+                <contentRight>
+                    <HBox alignItems="Center" class="miniPlayerRight">
+                        <Button
+                            icon="sap-icon://list"
+                            type="Transparent"
+                            press="onOpenQueue"
+                            tooltip="View queue"
+                            class="playerModeBtn"/>
+                        <HBox alignItems="Center" class="volumeGroup">
+                            <core:Icon
+                                src="{= ${player>/volume} === 0 ? 'sap-icon://sound' : (${player>/volume} &lt; 50 ? 'sap-icon://sound' : 'sap-icon://sound-loud') }"
+                                class="{= ${player>/volume} === 0 ? 'volumeIcon volumeIconMuted' : 'volumeIcon' }"
+                                tooltip="{= ${player>/volume} === 0 ? 'Muted' : 'Volume: ' + ${player>/volume} + '%' }"/>
+                            <Slider
+                                value="{player>/volume}"
+                                min="0"
+                                max="100"
+                                liveChange="onVolumeChange"
+                                width="5.5rem"
+                                class="volumeSlider"/>
+                        </HBox>
+                        <HBox alignItems="Center" class="progressGroup">
+                            <Text text="{player>/progressTime}" class="playerTime"/>
+                            <Slider
+                                value="{player>/progressPercent}"
+                                min="0"
+                                max="100"
+                                change="onSeek"
+                                width="10rem"
+                                class="playerSlider"/>
+                            <Text text="{player>/durationTime}" class="playerTime"/>
+                        </HBox>
+                    </HBox>
+                </contentRight>
+            </Bar>
+        </footer>
+    </Page>
+</mvc:View>

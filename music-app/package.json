@@ -1,0 +1,22 @@
+{
+  "name": "music-app",
+  "version": "0.0.1",
+  "description": "Music Library App with Flexible Column Layout",
+  "keywords": ["ui5", "openui5", "sapui5", "music"],
+  "main": "webapp/index.html",
+  "devDependencies": {
+    "@sap/ux-ui5-tooling": "1",
+    "@sapui5/ts-types-esm": "~1.94.0",
+    "@ui5/cli": "^4.0.33",
+    "typescript": "^5.9.3",
+    "ui5-tooling-transpile": "^3.10.0"
+  },
+  "scripts": {
+    "start": "fiori run --open \"/index.html\"",
+    "start-noflp": "fiori run --open \"/index.html?sap-ui-xx-viewCache=false\"",
+    "build": "ui5 build --config=ui5.yaml --clean-dest --dest dist",
+    "ts-typecheck": "tsc --noEmit",
+    "prestart": "npm run ts-typecheck",
+    "prebuild": "npm run ts-typecheck"
+  }
+}

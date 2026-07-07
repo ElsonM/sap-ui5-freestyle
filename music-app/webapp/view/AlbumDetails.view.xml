@@ -1,0 +1,132 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns:uxap="sap.uxap" xmlns="sap.m" xmlns:core="sap.ui.core" controllerName="at.clouddna.music.controller.AlbumDetails" displayBlock="true">
+    <uxap:ObjectPageLayout id="albumDetailsPage" alwaysShowContentHeader="false" showHeaderContent="true">
+        <uxap:headerTitle>
+            <uxap:ObjectPageDynamicHeaderTitle id="albumDetailsDynamicTitle">
+                <uxap:expandedHeading>
+                    <Title text="{music>/currentAlbum/name}" wrapping="true" class="sapUiSmallMarginEnd"/>
+                </uxap:expandedHeading>
+                <uxap:snappedHeading>
+                    <HBox alignItems="Center">
+                        <Avatar
+                            src="{music>/currentAlbum/image}"
+                            displaySize="XS"
+                            displayShape="Square"
+                            fallbackIcon="sap-icon://music"
+                            class="snappedAlbumThumb"/>
+                        <VBox justifyContent="Center" class="snappedAlbumInfo">
+                            <Text text="{music>/currentAlbum/artistName}" class="snappedAlbumArtist" maxLines="1" wrapping="false"/>
+                            <Title text="{music>/currentAlbum/name}" level="H5" wrapping="false" class="snappedAlbumTitle"/>
+                        </VBox>
+                    </HBox>
+                </uxap:snappedHeading>
+                <uxap:navigationActions>
+                    <OverflowToolbarButton
+                        type="Transparent"
+                        icon="sap-icon://full-screen"
+                        press="handleFullScreen"
+                        tooltip="Enter Full Screen"
+                        visible="{= ${ui>/actionButtonsInfo/endColumn/fullScreen} !== null }"/>
+                    <OverflowToolbarButton
+                        type="Transparent"
+                        icon="sap-icon://exit-full-screen"
+                        press="handleExitFullScreen"
+                        tooltip="Exit Full Screen"
+                        visible="{= ${ui>/actionButtonsInfo/endColumn/exitFullScreen} !== null }"/>
+                    <OverflowToolbarButton
+                        type="Transparent"
+                        icon="sap-icon://decline"
+                        press="handleClose"
+                        tooltip="Close"
+                        visible="{= ${ui>/actionButtonsInfo/endColumn/closeColumn} !== null }"/>
+                </uxap:navigationActions>
+            </uxap:ObjectPageDynamicHeaderTitle>
+        </uxap:headerTitle>
+        <uxap:headerContent>
+            <HBox alignItems="Start" wrap="Wrap">
+                <Avatar
+                    id="albumCover"
+                    src="{music>/currentAlbum/image}"
+                    displaySize="XL"
+                    displayShape="Square"
+                    showBorder="true"
+                    fallbackIcon="sap-icon://music"
+                    class="sapUiMediumMarginEnd albumCoverAvatar"/>
+                <VBox justifyContent="Center">
+                    <Text text="{music>/currentAlbum/artistName}" class="albumArtistLink"/>
+                    <Text text="{music>/currentAlbum/year} · {music>/currentAlbum/genre} · {music>/currentAlbum/songCount} Songs" class="albumMeta"/>
+                    <HBox class="sapUiSmallMarginTop">
+                        <Button
+                            id="playBtn"
+                            text="Play"
+                            type="Emphasized"
+                            icon="sap-icon://play"
+                            press="onPlay"
+                            class="sapUiSmallMarginEnd playButton"/>
+                        <Button
+                            id="shuffleBtn"
+                            text="Shuffle"
+                            icon="sap-icon://sort"
+                            press="onShuffle"
+                            class="sapUiSmallMarginEnd"/>
+                    </HBox>
+                </VBox>
+            </HBox>
+        </uxap:headerContent>
+        <uxap:sections>
+            <uxap:ObjectPageSection id="aboutSection" title="About" titleUppercase="false">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection id="aboutSubSection" showTitle="false">
+                        <uxap:blocks>
+                            <Text text="{music>/currentAlbum/description}" renderWhitespace="true" wrapping="true" class="albumDescription"/>
+                        </uxap:blocks>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+            <uxap:ObjectPageSection id="tracksSection" title="Tracks" titleUppercase="false">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection id="tracksSubSection" showTitle="false">
+                        <uxap:blocks>
+                            <Table
+                                id="trackTable"
+                                items="{music>/currentAlbum/tracks}"
+                                fixedLayout="false"
+                                showSeparators="None"
+                                noDataText="Loading tracks..."
+                                class="trackTable">
+                                <columns>
+                                    <Column width="3rem" hAlign="End">
+                                        <Label text="#" class="trackColLabel"/>
+                                    </Column>
+                                    <Column>
+                                        <Label text="Title" class="trackColLabel"/>
+                                    </Column>
+                                    <Column width="5rem" hAlign="End" demandPopin="true" minScreenWidth="Tablet">
+                                        <Label text="Duration" class="trackColLabel"/>
+                                    </Column>
+                                </columns>
+                                <items>
+                                    <ColumnListItem type="Active" press="onTrackPress" class="trackTableItem">
+                                        <cells>
+                                            <HBox alignItems="Center">
+                                                <core:Icon
+                                                    src="sap-icon://media-play"
+                                                    class="playingTrackIcon"
+                                                    visible="{= ${music>name} === ${player>/currentTrack/name} &amp;&amp; ${player>/currentTrack/albumName} === ${music>/currentAlbum/name} }"/>
+                                                <Text
+                                                    text="{music>rank}"
+                                                    class="trackRank"
+                                                    visible="{= !(${music>name} === ${player>/currentTrack/name} &amp;&amp; ${player>/currentTrack/albumName} === ${music>/currentAlbum/name}) }"/>
+                                            </HBox>
+                                            <Text text="{music>name}" class="trackName"/>
+                                            <Text text="{music>duration}" class="trackDuration"/>
+                                        </cells>
+                                    </ColumnListItem>
+                                </items>
+                            </Table>
+                        </uxap:blocks>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+        </uxap:sections>
+    </uxap:ObjectPageLayout>
+</mvc:View>

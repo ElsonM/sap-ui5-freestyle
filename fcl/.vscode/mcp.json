@@ -1,0 +1,34 @@
+{
+  "servers": {
+    "abap-mcp": {
+      "type": "stdio",
+      "command": "c:\\Users\\U475369\\.vscode\\extensions\\harieprasad.abap-mcp-1.0.0\\bin\\abap-mcp.exe",
+      "env": {
+        "SAP_URL": "https://hostname:port",
+        "SAP_USERNAME": "sap_username",
+        "SAP_PASSWORD": "sap_password",
+        "SAP_CLIENT": "sap_client",
+        "SAP_LANGUAGE": "en",
+        "TLS_REJECT_UNAUTHORIZED": "0",
+        "HTTP_PROXY": "http://systemusername:systempassword@proxy:port",
+        "HTTPS_PROXY": "http://systemusername:systempassword@proxy:port"
+      }
+    },
+    "sap-odata": {
+      "type": "stdio",
+      "command": "c:\\Users\\U475369\\.vscode\\extensions\\harieprasad.abap-mcp-1.0.0\\bin\\abap-mcp.exe",
+      "args": [],
+      "env": {
+        "SAP_ODATA_HOST": "",
+        "SAP_ODATA_USER": "",
+        "SAP_ODATA_PASSWORD": "",
+        "SAP_ODATA_CLIENT": "",
+        "SAP_ODATA_SAP_MODE": "true",
+        "SAP_ODATA_VERIFY_SSL": "true",
+        "SAP_ODATA_PROXY": "",
+        "SAP_ODATA_PROXY_USER": "",
+        "SAP_ODATA_PROXY_PASSWORD": ""
+      }
+    }
+  }
+}

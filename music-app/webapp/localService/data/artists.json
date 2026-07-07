@@ -1,0 +1,550 @@
+{
+  "artists": [
+    {
+      "name": "Arctic Monkeys",
+      "genre": "Alternative Rock",
+      "listeners": "5,234,891",
+      "albumCount": 7,
+      "songCount": 85,
+      "albums": [
+        {
+          "name": "AM",
+          "artistName": "Arctic Monkeys",
+          "year": "2013",
+          "genre": "Alternative Rock",
+          "songCount": 12,
+          "description": "AM is the fifth studio album by Arctic Monkeys. It was released on 9 September 2013 and became the band's best-selling album, featuring their signature blend of blues-influenced guitar riffs and garage rock.",
+          "tracks": [
+            { "rank": 1, "name": "Do I Wanna Know?", "duration": "4:32" },
+            { "rank": 2, "name": "R U Mine?", "duration": "3:21" },
+            { "rank": 3, "name": "One For The Road", "duration": "3:26" },
+            { "rank": 4, "name": "Arabella", "duration": "3:27" },
+            { "rank": 5, "name": "I Want It All", "duration": "3:04" },
+            { "rank": 6, "name": "No. 1 Party Anthem", "duration": "4:03" },
+            { "rank": 7, "name": "Mad Sounds", "duration": "3:35" },
+            { "rank": 8, "name": "Fireside", "duration": "3:02" },
+            { "rank": 9, "name": "Why'd You Only Call Me When You're High?", "duration": "2:41" },
+            { "rank": 10, "name": "Snap Out of It", "duration": "3:12" },
+            { "rank": 11, "name": "Knee Socks", "duration": "4:18" },
+            { "rank": 12, "name": "I Wanna Be Yours", "duration": "3:04" }
+          ]
+        },
+        {
+          "name": "Tranquility Base Hotel + Casino",
+          "artistName": "Arctic Monkeys",
+          "year": "2018",
+          "genre": "Art Rock",
+          "songCount": 11,
+          "description": "The sixth studio album by Arctic Monkeys, released on 11 May 2018. A concept album set in a hotel on the Moon, marking a significant departure from their earlier sound towards lounge pop and art rock.",
+          "tracks": [
+            { "rank": 1, "name": "Star Treatment", "duration": "5:07" },
+            { "rank": 2, "name": "One Point Perspective", "duration": "3:31" },
+            { "rank": 3, "name": "American Sports", "duration": "2:42" },
+            { "rank": 4, "name": "Tranquility Base Hotel + Casino", "duration": "3:38" },
+            { "rank": 5, "name": "Golden Trunks", "duration": "2:42" },
+            { "rank": 6, "name": "Four Out of Five", "duration": "5:03" },
+            { "rank": 7, "name": "The World's First Ever Monster Truck Front Flip", "duration": "2:34" },
+            { "rank": 8, "name": "Science Fiction", "duration": "3:32" },
+            { "rank": 9, "name": "She Looks Like Fun", "duration": "3:53" },
+            { "rank": 10, "name": "Batphone", "duration": "3:32" },
+            { "rank": 11, "name": "The Ultracheese", "duration": "5:30" }
+          ]
+        },
+        {
+          "name": "Favourite Worst Nightmare",
+          "artistName": "Arctic Monkeys",
+          "year": "2007",
+          "genre": "Indie Rock",
+          "songCount": 12,
+          "description": "The second studio album by Arctic Monkeys, released on 23 April 2007. It debuted at number one in the UK and was met with widespread critical acclaim.",
+          "tracks": [
+            { "rank": 1, "name": "Brianstorm", "duration": "2:52" },
+            { "rank": 2, "name": "Teddy Picker", "duration": "2:52" },
+            { "rank": 3, "name": "D Is for Dangerous", "duration": "2:59" },
+            { "rank": 4, "name": "Balaclava", "duration": "2:17" },
+            { "rank": 5, "name": "Fluorescent Adolescent", "duration": "2:57" },
+            { "rank": 6, "name": "Only Ones Who Know", "duration": "3:24" },
+            { "rank": 7, "name": "Do Me a Favour", "duration": "3:34" },
+            { "rank": 8, "name": "This House Is a Circus", "duration": "3:28" },
+            { "rank": 9, "name": "If You Were There, Beware", "duration": "3:05" },
+            { "rank": 10, "name": "The Bad Thing", "duration": "2:25" },
+            { "rank": 11, "name": "Old Yellow Bricks", "duration": "2:40" },
+            { "rank": 12, "name": "505", "duration": "4:13" }
+          ]
+        },
+        {
+          "name": "Humbug",
+          "artistName": "Arctic Monkeys",
+          "year": "2009",
+          "genre": "Psychedelic Rock",
+          "songCount": 10,
+          "description": "The third studio album by Arctic Monkeys, released on 19 August 2009. Produced by Josh Homme of Queens of the Stone Age, it marked a darker, more psychedelic direction.",
+          "tracks": [
+            { "rank": 1, "name": "My Propeller", "duration": "3:34" },
+            { "rank": 2, "name": "Crying Lightning", "duration": "3:43" },
+            { "rank": 3, "name": "Dangerous Animals", "duration": "3:22" },
+            { "rank": 4, "name": "Secret Door", "duration": "3:40" },
+            { "rank": 5, "name": "Potion Approaching", "duration": "3:04" },
+            { "rank": 6, "name": "Fire and the Thud", "duration": "3:25" },
+            { "rank": 7, "name": "Cornerstone", "duration": "3:17" },
+            { "rank": 8, "name": "The Jeweller's Hands", "duration": "5:43" },
+            { "rank": 9, "name": "The Nights of a Thousand Fights", "duration": "3:42" },
+            { "rank": 10, "name": "Pretty Visitors", "duration": "3:23" }
+          ]
+        },
+        {
+          "name": "The Car",
+          "artistName": "Arctic Monkeys",
+          "year": "2022",
+          "genre": "Art Rock",
+          "songCount": 10,
+          "description": "The seventh studio album by Arctic Monkeys, released on 21 October 2022. A cinematic and orchestral record that continues the atmospheric direction established on Tranquility Base Hotel + Casino.",
+          "tracks": [
+            { "rank": 1, "name": "There'd Better Be a Mirrorball", "duration": "4:48" },
+            { "rank": 2, "name": "I Ain't Quite Where I Think I Am", "duration": "4:11" },
+            { "rank": 3, "name": "Sculptures of Anything Goes", "duration": "4:13" },
+            { "rank": 4, "name": "Jet Skis on the Moat", "duration": "3:44" },
+            { "rank": 5, "name": "Body Paint", "duration": "5:30" },
+            { "rank": 6, "name": "The Car", "duration": "3:53" },
+            { "rank": 7, "name": "Big Ideas", "duration": "4:38" },
+            { "rank": 8, "name": "Hello You", "duration": "3:31" },
+            { "rank": 9, "name": "Mr Schwartz", "duration": "3:29" },
+            { "rank": 10, "name": "Perfect Sense", "duration": "4:16" }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Coldplay",
+      "genre": "Alternative Rock",
+      "listeners": "7,890,123",
+      "albumCount": 9,
+      "songCount": 112,
+      "albums": [
+        {
+          "name": "A Head Full of Dreams",
+          "artistName": "Coldplay",
+          "year": "2015",
+          "genre": "Pop Rock",
+          "songCount": 11,
+          "description": "The seventh studio album by Coldplay, released on 4 December 2015. A colorful and optimistic record featuring collaborations with Beyoncé, Noel Gallagher, and Tove Lo.",
+          "tracks": [
+            { "rank": 1, "name": "A Head Full of Dreams", "duration": "3:55" },
+            { "rank": 2, "name": "Birds", "duration": "4:49" },
+            { "rank": 3, "name": "Hymn for the Weekend", "duration": "4:18" },
+            { "rank": 4, "name": "Everglow", "duration": "4:55" },
+            { "rank": 5, "name": "Adventure of a Lifetime", "duration": "4:23" },
+            { "rank": 6, "name": "Fun", "duration": "3:46" },
+            { "rank": 7, "name": "Kaleidoscope", "duration": "1:46" },
+            { "rank": 8, "name": "Army of One", "duration": "4:46" },
+            { "rank": 9, "name": "Amazing Day", "duration": "4:56" },
+            { "rank": 10, "name": "Colour Spectrum", "duration": "1:02" },
+            { "rank": 11, "name": "Up&Up", "duration": "6:48" }
+          ]
+        },
+        {
+          "name": "Music of the Spheres",
+          "artistName": "Coldplay",
+          "year": "2021",
+          "genre": "Pop",
+          "songCount": 12,
+          "description": "The ninth studio album by Coldplay, released on 15 October 2021. A cosmic and euphoric record featuring collaborations with BTS and Selena Gomez.",
+          "tracks": [
+            { "rank": 1, "name": "Music of the Spheres", "duration": "1:54" },
+            { "rank": 2, "name": "My Universe", "duration": "3:34" },
+            { "rank": 3, "name": "Human Heart", "duration": "3:02" },
+            { "rank": 4, "name": "People of the Pride", "duration": "3:43" },
+            { "rank": 5, "name": "Infinity Sign", "duration": "1:50" },
+            { "rank": 6, "name": "Higher Power", "duration": "3:32" },
+            { "rank": 7, "name": "Humankind", "duration": "4:01" },
+            { "rank": 8, "name": "Let Somebody Go", "duration": "3:38" },
+            { "rank": 9, "name": "Earth", "duration": "1:46" },
+            { "rank": 10, "name": "Biutyful", "duration": "3:10" },
+            { "rank": 11, "name": "My Universe (feat. BTS)", "duration": "3:34" },
+            { "rank": 12, "name": "Coloratura", "duration": "10:18" }
+          ]
+        },
+        {
+          "name": "Parachutes",
+          "artistName": "Coldplay",
+          "year": "2000",
+          "genre": "Britpop",
+          "songCount": 10,
+          "description": "The debut studio album by Coldplay, released on 10 July 2000. A critically acclaimed debut that established Coldplay as one of the leading British bands of the 2000s.",
+          "tracks": [
+            { "rank": 1, "name": "Don't Panic", "duration": "2:17" },
+            { "rank": 2, "name": "Shiver", "duration": "4:59" },
+            { "rank": 3, "name": "Spies", "duration": "5:18" },
+            { "rank": 4, "name": "Sparks", "duration": "3:47" },
+            { "rank": 5, "name": "Yellow", "duration": "4:26" },
+            { "rank": 6, "name": "Trouble", "duration": "4:30" },
+            { "rank": 7, "name": "Parachutes", "duration": "0:46" },
+            { "rank": 8, "name": "High Speed", "duration": "4:14" },
+            { "rank": 9, "name": "We Never Change", "duration": "4:07" },
+            { "rank": 10, "name": "Everything's Not Lost", "duration": "7:15" }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "The Weeknd",
+      "genre": "R&B / Pop",
+      "listeners": "6,543,210",
+      "albumCount": 5,
+      "songCount": 60,
+      "albums": [
+        {
+          "name": "After Hours",
+          "artistName": "The Weeknd",
+          "year": "2020",
+          "genre": "Synth-pop",
+          "songCount": 14,
+          "description": "The fourth studio album by The Weeknd, released on 20 March 2020. A cinematic and introspective record inspired by film noir, featuring Blinding Lights — one of the best-selling singles of all time.",
+          "tracks": [
+            { "rank": 1, "name": "Alone Again", "duration": "4:10" },
+            { "rank": 2, "name": "Too Late", "duration": "3:59" },
+            { "rank": 3, "name": "Hardest to Love", "duration": "3:31" },
+            { "rank": 4, "name": "Scared to Live", "duration": "3:16" },
+            { "rank": 5, "name": "Snowchild", "duration": "4:05" },
+            { "rank": 6, "name": "Escape from LA", "duration": "5:56" },
+            { "rank": 7, "name": "Heartless", "duration": "3:18" },
+            { "rank": 8, "name": "Faith", "duration": "5:46" },
+            { "rank": 9, "name": "Blinding Lights", "duration": "3:20" },
+            { "rank": 10, "name": "In Your Eyes", "duration": "3:58" },
+            { "rank": 11, "name": "Save Your Tears", "duration": "3:36" },
+            { "rank": 12, "name": "Repeat After Me (Interlude)", "duration": "3:10" },
+            { "rank": 13, "name": "After Hours", "duration": "6:00" },
+            { "rank": 14, "name": "Until I Bleed Out", "duration": "4:15" }
+          ]
+        },
+        {
+          "name": "Starboy",
+          "artistName": "The Weeknd",
+          "year": "2016",
+          "genre": "Synth-pop",
+          "songCount": 18,
+          "description": "The third studio album by The Weeknd, released on 25 November 2016. A genre-blending record featuring collaborations with Daft Punk, Lana Del Rey, and Future.",
+          "tracks": [
+            { "rank": 1, "name": "Starboy", "duration": "3:50" },
+            { "rank": 2, "name": "Party Monster", "duration": "4:08" },
+            { "rank": 3, "name": "False Alarm", "duration": "3:40" },
+            { "rank": 4, "name": "Reminder", "duration": "3:38" },
+            { "rank": 5, "name": "Rockin'", "duration": "3:53" },
+            { "rank": 6, "name": "Secrets", "duration": "4:26" },
+            { "rank": 7, "name": "True Colors", "duration": "3:55" },
+            { "rank": 8, "name": "Sidewalks", "duration": "3:55" },
+            { "rank": 9, "name": "Six Feet Under", "duration": "4:03" },
+            { "rank": 10, "name": "Love to Lay", "duration": "3:48" },
+            { "rank": 11, "name": "A Lonely Night", "duration": "4:15" },
+            { "rank": 12, "name": "Attention", "duration": "3:48" },
+            { "rank": 13, "name": "I Feel It Coming", "duration": "4:29" },
+            { "rank": 14, "name": "Die For You", "duration": "4:20" },
+            { "rank": 15, "name": "All I Know", "duration": "4:28" },
+            { "rank": 16, "name": "Nothing Without You", "duration": "3:20" },
+            { "rank": 17, "name": "Often", "duration": "4:11" },
+            { "rank": 18, "name": "Ordinary Life", "duration": "4:16" }
+          ]
+        },
+        {
+          "name": "Dawn FM",
+          "artistName": "The Weeknd",
+          "year": "2022",
+          "genre": "Synth-pop",
+          "songCount": 16,
+          "description": "The fifth studio album by The Weeknd, released on 7 January 2022. A concept album presented as a radio broadcast guiding listeners through purgatory to the afterlife.",
+          "tracks": [
+            { "rank": 1, "name": "Dawn FM", "duration": "1:36" },
+            { "rank": 2, "name": "Gasoline", "duration": "3:33" },
+            { "rank": 3, "name": "How Do I Make You Love Me?", "duration": "3:34" },
+            { "rank": 4, "name": "Take My Breath", "duration": "3:38" },
+            { "rank": 5, "name": "Sacrifice", "duration": "3:08" },
+            { "rank": 6, "name": "A Tale by Quincy", "duration": "1:25" },
+            { "rank": 7, "name": "Out of Time", "duration": "3:38" },
+            { "rank": 8, "name": "Here We Go... Again", "duration": "4:32" },
+            { "rank": 9, "name": "Best Friends", "duration": "3:06" },
+            { "rank": 10, "name": "Is There Someone Else?", "duration": "3:25" },
+            { "rank": 11, "name": "Starlight", "duration": "3:56" },
+            { "rank": 12, "name": "Every Angel Is Terrifying", "duration": "1:48" },
+            { "rank": 13, "name": "Don't Break My Heart", "duration": "3:18" },
+            { "rank": 14, "name": "I Heard You're Married", "duration": "4:12" },
+            { "rank": 15, "name": "Less Than Zero", "duration": "4:08" },
+            { "rank": 16, "name": "Phantom Regret by Jim", "duration": "3:18" }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Imagine Dragons",
+      "genre": "Pop Rock",
+      "listeners": "5,678,901",
+      "albumCount": 6,
+      "songCount": 74,
+      "albums": [
+        {
+          "name": "Night Visions",
+          "artistName": "Imagine Dragons",
+          "year": "2012",
+          "genre": "Indie Rock",
+          "songCount": 12,
+          "description": "The debut studio album by Imagine Dragons, released on 4 September 2012. Featuring the worldwide hit Radioactive, the album became one of the best-selling albums of 2013.",
+          "tracks": [
+            { "rank": 1, "name": "Radioactive", "duration": "3:06" },
+            { "rank": 2, "name": "Tiptoe", "duration": "3:26" },
+            { "rank": 3, "name": "It's Time", "duration": "4:00" },
+            { "rank": 4, "name": "Demons", "duration": "2:57" },
+            { "rank": 5, "name": "On Top of the World", "duration": "3:12" },
+            { "rank": 6, "name": "Amsterdam", "duration": "3:16" },
+            { "rank": 7, "name": "Hear Me", "duration": "3:21" },
+            { "rank": 8, "name": "Every Night", "duration": "3:26" },
+            { "rank": 9, "name": "Bleeding Out", "duration": "3:28" },
+            { "rank": 10, "name": "Underdog", "duration": "3:32" },
+            { "rank": 11, "name": "Nothing Left to Say / Rocks", "duration": "6:26" },
+            { "rank": 12, "name": "Cha-Ching (Till We Grow Older)", "duration": "3:31" }
+          ]
+        },
+        {
+          "name": "Evolve",
+          "artistName": "Imagine Dragons",
+          "year": "2017",
+          "genre": "Pop Rock",
+          "songCount": 11,
+          "description": "The fourth studio album by Imagine Dragons, released on 23 June 2017. Featuring hit singles Believer, Thunder, and Whatever It Takes.",
+          "tracks": [
+            { "rank": 1, "name": "I Don't Know Why", "duration": "3:04" },
+            { "rank": 2, "name": "Whatever It Takes", "duration": "3:22" },
+            { "rank": 3, "name": "Believer", "duration": "3:24" },
+            { "rank": 4, "name": "Walking the Wire", "duration": "3:27" },
+            { "rank": 5, "name": "Rise Up", "duration": "3:14" },
+            { "rank": 6, "name": "I'll Make It Up to You", "duration": "3:36" },
+            { "rank": 7, "name": "Yesterday", "duration": "3:40" },
+            { "rank": 8, "name": "Mouth of the River", "duration": "3:47" },
+            { "rank": 9, "name": "Thunder", "duration": "3:08" },
+            { "rank": 10, "name": "Start Over", "duration": "3:56" },
+            { "rank": 11, "name": "Dancing in the Dark", "duration": "4:01" }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Daft Punk",
+      "genre": "Electronic",
+      "listeners": "4,321,098",
+      "albumCount": 4,
+      "songCount": 49,
+      "albums": [
+        {
+          "name": "Random Access Memories",
+          "artistName": "Daft Punk",
+          "year": "2013",
+          "genre": "Disco / Electronic",
+          "songCount": 13,
+          "description": "The fourth and final studio album by Daft Punk, released on 17 May 2013. A disco-influenced masterpiece featuring Get Lucky, Around the World, and Instant Crush.",
+          "tracks": [
+            { "rank": 1, "name": "Give Life Back to Music", "duration": "4:35" },
+            { "rank": 2, "name": "The Game of Love", "duration": "4:17" },
+            { "rank": 3, "name": "Giorgio by Moroder", "duration": "9:04" },
+            { "rank": 4, "name": "Within", "duration": "3:47" },
+            { "rank": 5, "name": "Instant Crush", "duration": "5:37" },
+            { "rank": 6, "name": "Lose Yourself to Dance", "duration": "5:53" },
+            { "rank": 7, "name": "Touch", "duration": "8:18" },
+            { "rank": 8, "name": "Get Lucky", "duration": "6:07" },
+            { "rank": 9, "name": "Beyond", "duration": "4:50" },
+            { "rank": 10, "name": "Motherboard", "duration": "5:42" },
+            { "rank": 11, "name": "Fragments of Time", "duration": "4:38" },
+            { "rank": 12, "name": "Doin' It Right", "duration": "4:10" },
+            { "rank": 13, "name": "Contact", "duration": "6:21" }
+          ]
+        },
+        {
+          "name": "Discovery",
+          "artistName": "Daft Punk",
+          "year": "2001",
+          "genre": "French House",
+          "songCount": 14,
+          "description": "The second studio album by Daft Punk, released on 26 February 2001. An iconic record featuring One More Time, Digital Love, and Harder, Better, Faster, Stronger.",
+          "tracks": [
+            { "rank": 1, "name": "One More Time", "duration": "5:20" },
+            { "rank": 2, "name": "Aerodynamic", "duration": "3:28" },
+            { "rank": 3, "name": "Digital Love", "duration": "4:58" },
+            { "rank": 4, "name": "Harder, Better, Faster, Stronger", "duration": "3:45" },
+            { "rank": 5, "name": "Crescendolls", "duration": "3:31" },
+            { "rank": 6, "name": "Nightvision", "duration": "1:44" },
+            { "rank": 7, "name": "Superheroes", "duration": "3:57" },
+            { "rank": 8, "name": "High Life", "duration": "3:22" },
+            { "rank": 9, "name": "Something About Us", "duration": "4:07" },
+            { "rank": 10, "name": "Voyager", "duration": "3:47" },
+            { "rank": 11, "name": "Veridis Quo", "duration": "5:44" },
+            { "rank": 12, "name": "Short Circuit", "duration": "3:27" },
+            { "rank": 13, "name": "Face to Face", "duration": "3:58" },
+            { "rank": 14, "name": "Too Long", "duration": "10:00" }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Billie Eilish",
+      "genre": "Electropop",
+      "listeners": "4,876,543",
+      "albumCount": 3,
+      "songCount": 37,
+      "albums": [
+        {
+          "name": "When We All Fall Asleep, Where Do We Go?",
+          "artistName": "Billie Eilish",
+          "year": "2019",
+          "genre": "Electropop",
+          "songCount": 14,
+          "description": "The debut studio album by Billie Eilish, released on 29 March 2019. A groundbreaking debut that won all four major Grammy Awards — Album, Record, Song of the Year, and Best New Artist.",
+          "tracks": [
+            { "rank": 1, "name": "!!!!!!!!", "duration": "0:14" },
+            { "rank": 2, "name": "bad guy", "duration": "3:14" },
+            { "rank": 3, "name": "xanny", "duration": "4:11" },
+            { "rank": 4, "name": "you should see me in a crown", "duration": "3:02" },
+            { "rank": 5, "name": "all the good girls go to hell", "duration": "2:45" },
+            { "rank": 6, "name": "wish you were gay", "duration": "3:42" },
+            { "rank": 7, "name": "when the party's over", "duration": "3:16" },
+            { "rank": 8, "name": "8", "duration": "2:54" },
+            { "rank": 9, "name": "my strange addiction", "duration": "2:57" },
+            { "rank": 10, "name": "bury a friend", "duration": "3:13" },
+            { "rank": 11, "name": "ilomilo", "duration": "2:33" },
+            { "rank": 12, "name": "listen before i go", "duration": "3:17" },
+            { "rank": 13, "name": "i love you", "duration": "4:50" },
+            { "rank": 14, "name": "goodbye", "duration": "3:42" }
+          ]
+        },
+        {
+          "name": "Happier Than Ever",
+          "artistName": "Billie Eilish",
+          "year": "2021",
+          "genre": "Pop",
+          "songCount": 16,
+          "description": "The second studio album by Billie Eilish, released on 30 July 2021. A mature and introspective record exploring themes of fame, identity, and personal growth.",
+          "tracks": [
+            { "rank": 1, "name": "Getting Older", "duration": "3:45" },
+            { "rank": 2, "name": "I Didn't Change My Number", "duration": "2:28" },
+            { "rank": 3, "name": "Billie Bossa Nova", "duration": "3:15" },
+            { "rank": 4, "name": "my future", "duration": "3:31" },
+            { "rank": 5, "name": "Oxytocin", "duration": "3:47" },
+            { "rank": 6, "name": "GOLDWING", "duration": "2:28" },
+            { "rank": 7, "name": "Lost Cause", "duration": "3:06" },
+            { "rank": 8, "name": "Halley's Comet", "duration": "3:49" },
+            { "rank": 9, "name": "Not My Responsibility", "duration": "3:46" },
+            { "rank": 10, "name": "OverHeated", "duration": "2:55" },
+            { "rank": 11, "name": "Everybody Dies", "duration": "3:26" },
+            { "rank": 12, "name": "Your Power", "duration": "4:03" },
+            { "rank": 13, "name": "NDA", "duration": "3:38" },
+            { "rank": 14, "name": "Therefore I Am", "duration": "2:54" },
+            { "rank": 15, "name": "Happier Than Ever", "duration": "4:59" },
+            { "rank": 16, "name": "Male Fantasy", "duration": "3:38" }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Bruno Mars",
+      "genre": "Pop / R&B",
+      "listeners": "5,123,456",
+      "albumCount": 4,
+      "songCount": 46,
+      "albums": [
+        {
+          "name": "24K Magic",
+          "artistName": "Bruno Mars",
+          "year": "2016",
+          "genre": "Funk / R&B",
+          "songCount": 9,
+          "description": "The third studio album by Bruno Mars, released on 18 November 2016. A funk and R&B-inspired record that won six Grammy Awards including Album of the Year.",
+          "tracks": [
+            { "rank": 1, "name": "24K Magic", "duration": "3:46" },
+            { "rank": 2, "name": "Chunky", "duration": "3:43" },
+            { "rank": 3, "name": "Perm", "duration": "4:06" },
+            { "rank": 4, "name": "That's What I Like", "duration": "3:26" },
+            { "rank": 5, "name": "Versace on the Floor", "duration": "4:42" },
+            { "rank": 6, "name": "Straight Up & Down", "duration": "3:24" },
+            { "rank": 7, "name": "Calling All My Lovelies", "duration": "4:03" },
+            { "rank": 8, "name": "Finesse", "duration": "3:27" },
+            { "rank": 9, "name": "Too Good to Say Goodbye", "duration": "4:07" }
+          ]
+        },
+        {
+          "name": "Unorthodox Jukebox",
+          "artistName": "Bruno Mars",
+          "year": "2012",
+          "genre": "Pop / R&B",
+          "songCount": 10,
+          "description": "The second studio album by Bruno Mars, released on 11 December 2012. A genre-defying record featuring When I Was Your Man, Gorilla, and Locked Out of Heaven.",
+          "tracks": [
+            { "rank": 1, "name": "Young Girls", "duration": "3:44" },
+            { "rank": 2, "name": "Locked Out of Heaven", "duration": "3:53" },
+            { "rank": 3, "name": "Gorilla", "duration": "4:04" },
+            { "rank": 4, "name": "Treasure", "duration": "2:58" },
+            { "rank": 5, "name": "Moonshine", "duration": "4:15" },
+            { "rank": 6, "name": "When I Was Your Man", "duration": "3:33" },
+            { "rank": 7, "name": "Natalie", "duration": "3:32" },
+            { "rank": 8, "name": "Show Me", "duration": "4:04" },
+            { "rank": 9, "name": "Money Makes Her Smile", "duration": "3:18" },
+            { "rank": 10, "name": "If I Knew", "duration": "3:43" }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Justin Bieber",
+      "genre": "Pop",
+      "listeners": "6,234,567",
+      "albumCount": 6,
+      "songCount": 64,
+      "albums": [
+        {
+          "name": "Purpose",
+          "artistName": "Justin Bieber",
+          "year": "2015",
+          "genre": "Pop / R&B",
+          "songCount": 13,
+          "description": "The fourth studio album by Justin Bieber, released on 13 November 2015. A mature and personal record featuring the massive hits Sorry, Love Yourself, and What Do You Mean?.",
+          "tracks": [
+            { "rank": 1, "name": "Mark My Words", "duration": "3:36" },
+            { "rank": 2, "name": "I'll Show You", "duration": "3:47" },
+            { "rank": 3, "name": "What Do You Mean?", "duration": "3:26" },
+            { "rank": 4, "name": "Sorry", "duration": "3:20" },
+            { "rank": 5, "name": "Love Yourself", "duration": "3:53" },
+            { "rank": 6, "name": "Company", "duration": "3:24" },
+            { "rank": 7, "name": "No Sense", "duration": "4:10" },
+            { "rank": 8, "name": "No Pressure", "duration": "3:29" },
+            { "rank": 9, "name": "The Feeling", "duration": "3:49" },
+            { "rank": 10, "name": "Life Is Worth Living", "duration": "3:28" },
+            { "rank": 11, "name": "Where Are U Now", "duration": "3:56" },
+            { "rank": 12, "name": "Children", "duration": "3:30" },
+            { "rank": 13, "name": "Purpose", "duration": "3:50" }
+          ]
+        },
+        {
+          "name": "Justice",
+          "artistName": "Justin Bieber",
+          "year": "2021",
+          "genre": "Pop / R&B",
+          "songCount": 16,
+          "description": "The sixth studio album by Justin Bieber, released on 19 March 2021. Featuring Peaches, Hold On, and Ghost, the album debuted at number one in multiple countries.",
+          "tracks": [
+            { "rank": 1, "name": "2 Much", "duration": "3:16" },
+            { "rank": 2, "name": "Deserve You", "duration": "3:28" },
+            { "rank": 3, "name": "As I Am", "duration": "3:05" },
+            { "rank": 4, "name": "Off My Face", "duration": "3:41" },
+            { "rank": 5, "name": "Holy", "duration": "3:31" },
+            { "rank": 6, "name": "Unstable", "duration": "2:59" },
+            { "rank": 7, "name": "MLK Interlude", "duration": "0:37" },
+            { "rank": 8, "name": "Die For You", "duration": "2:31" },
+            { "rank": 9, "name": "Hold On", "duration": "3:11" },
+            { "rank": 10, "name": "Somebody", "duration": "3:00" },
+            { "rank": 11, "name": "Love You Different", "duration": "2:55" },
+            { "rank": 12, "name": "Anyone", "duration": "3:35" },
+            { "rank": 13, "name": "Loved by You", "duration": "3:41" },
+            { "rank": 14, "name": "Ghost", "duration": "2:33" },
+            { "rank": 15, "name": "Peaches", "duration": "3:18" },
+            { "rank": 16, "name": "Forever", "duration": "3:32" }
+          ]
+        }
+      ]
+    }
+  ]
+}
