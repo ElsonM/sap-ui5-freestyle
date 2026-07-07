@@ -1,0 +1,118 @@
+{
+    "_version": "1.17.0",
+    "sap.app": {
+        "id": "at.clouddna.music",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "0.0.1"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}"
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": false,
+        "dependencies": {
+            "minUI5Version": "1.94.0",
+            "libs": {
+                "sap.f": {},
+                "sap.m": {},
+                "sap.ui.core": {},
+                "sap.ui.layout": {},
+                "sap.uxap": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "at.clouddna.music.i18n.i18n"
+                }
+            }
+        },
+        "resources": {
+            "css": [
+                {
+                    "uri": "css/style.css"
+                }
+            ]
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.f.routing.Router",
+                "viewType": "XML",
+                "async": true,
+                "viewPath": "at.clouddna.music.view",
+                "controlId": "fcl",
+                "transition": "slide"
+            },
+            "routes": [
+                {
+                    "name": "RouteArtist",
+                    "pattern": ":?query:",
+                    "target": [
+                        "TargetArtist"
+                    ]
+                },
+                {
+                    "name": "RouteArtistAlbums",
+                    "pattern": "artist/{path}/:?query:",
+                    "target": [
+                        "TargetArtist",
+                        "TargetArtistAlbums"
+                    ]
+                },
+                {
+                    "name": "RouteAlbumDetails",
+                    "pattern": "artist/{path}/album/{albumPath}/:?query:",
+                    "target": [
+                        "TargetArtist",
+                        "TargetArtistAlbums",
+                        "TargetAlbumDetails"
+                    ]
+                }
+            ],
+            "targets": {
+                "TargetArtist": {
+                    "viewType": "XML",
+                    "viewId": "Artist",
+                    "viewName": "Artist",
+                    "controlAggregation": "beginColumnPages",
+                    "clearControlAggregation": true
+                },
+                "TargetArtistAlbums": {
+                    "viewType": "XML",
+                    "viewId": "ArtistAlbums",
+                    "viewName": "ArtistAlbums",
+                    "controlAggregation": "midColumnPages",
+                    "clearControlAggregation": true
+                },
+                "TargetAlbumDetails": {
+                    "viewType": "XML",
+                    "viewId": "AlbumDetails",
+                    "viewName": "AlbumDetails",
+                    "controlAggregation": "endColumnPages",
+                    "clearControlAggregation": true
+                }
+            }
+        },
+        "rootView": {
+            "viewName": "at.clouddna.music.view.App",
+            "type": "XML",
+            "async": true,
+            "id": "App"
+        }
+    }
+}

@@ -1,0 +1,81 @@
+<Dialog
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:dnd="sap.ui.core.dnd"
+    title="Queue"
+    contentWidth="28rem"
+    contentHeight="22rem"
+    verticalScrolling="true"
+    class="queueDrawer">
+    <subHeader>
+        <Bar class="queueSubBar">
+            <contentLeft>
+                <HBox
+                    alignItems="Center"
+                    class="queueNowPlayingRow"
+                    visible="{= !!${player>/currentTrack/name} }">
+                    <core:Icon src="sap-icon://media-play" class="queueNowPlayingHeaderIcon"/>
+                    <Text
+                        text="{= ${player>/currentTrack/name} + (${player>/currentTrack/artistName} ? ' · ' + ${player>/currentTrack/artistName} : '') }"
+                        class="queueNowPlayingHeaderText"
+                        maxLines="1"
+                        wrapping="false"/>
+                </HBox>
+            </contentLeft>
+            <contentRight>
+                <Text
+                    text="{= ${player>/queue}.length + (${player>/queue}.length === 1 ? ' track' : ' tracks') }"
+                    class="queueCountBadge"/>
+            </contentRight>
+        </Bar>
+    </subHeader>
+    <content>
+        <List
+            items="{player>/queue}"
+            showSeparators="None"
+            noDataText="Queue is empty"
+            class="queueList">
+            <dragDropConfig>
+                <dnd:DragDropInfo
+                    sourceAggregation="items"
+                    targetAggregation="items"
+                    dropPosition="Between"
+                    drop="onQueueDrop"/>
+            </dragDropConfig>
+            <CustomListItem type="Active" press="onQueueTrackPress" class="{= ${player>name} === ${player>/currentTrack/name} &amp;&amp; ${player>albumName} === ${player>/currentTrack/albumName} ? 'queueListItem queueListItemActive' : 'queueListItem' }">
+                <HBox alignItems="Center" width="100%" class="queueItemContent">
+                    <core:Icon
+                        src="sap-icon://menu2"
+                        class="queueDragHandle"
+                        tooltip="Drag to reorder"/>
+                    <core:Icon
+                        src="sap-icon://media-play"
+                        class="queueNowPlayingIcon"
+                        visible="{= ${player>name} === ${player>/currentTrack/name} &amp;&amp; ${player>albumName} === ${player>/currentTrack/albumName} }"/>
+                    <Text
+                        text="{player>rank}"
+                        class="queueItemRank"
+                        visible="{= !(${player>name} === ${player>/currentTrack/name} &amp;&amp; ${player>albumName} === ${player>/currentTrack/albumName}) }"/>
+                    <VBox class="queueItemInfo">
+                        <Text text="{player>name}" class="queueItemName" maxLines="1" wrapping="false"/>
+                        <Text
+                            text="{= (${player>artistName} || '') + (${player>albumName} ? ' · ' + ${player>albumName} : '') }"
+                            class="queueItemSub"
+                            maxLines="1"
+                            wrapping="false"/>
+                    </VBox>
+                    <Text text="{player>duration}" class="queueItemDuration"/>
+                    <Button
+                        icon="sap-icon://decline"
+                        type="Transparent"
+                        press="onRemoveFromQueue"
+                        tooltip="Remove from queue"
+                        class="queueRemoveBtn"/>
+                </HBox>
+            </CustomListItem>
+        </List>
+    </content>
+    <buttons>
+        <Button text="Close" press="onCloseQueue" type="Transparent"/>
+    </buttons>
+</Dialog>

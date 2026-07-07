@@ -1,0 +1,169 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns:uxap="sap.uxap" xmlns:core="sap.ui.core" xmlns="sap.m" controllerName="at.clouddna.music.controller.ArtistAlbums" displayBlock="true">
+    <uxap:ObjectPageLayout id="artistAlbumsPage" alwaysShowContentHeader="false">
+        <uxap:headerTitle>
+            <uxap:ObjectPageDynamicHeaderTitle id="artistAlbumsDynamicTitle">
+                <uxap:expandedHeading>
+                    <Title text="{music>/currentArtist}" wrapping="true" class="sapUiSmallMarginEnd"/>
+                </uxap:expandedHeading>
+                <uxap:snappedHeading>
+                    <HBox alignItems="Center">
+                        <Avatar
+                            src="{music>/currentArtistIcon}"
+                            fallbackIcon="sap-icon://person-placeholder"
+                            displaySize="XS"
+                            class="sapUiTinyMarginEnd"/>
+                        <Title text="{music>/currentArtist}" wrapping="false"/>
+                    </HBox>
+                </uxap:snappedHeading>
+                <uxap:navigationActions>
+                    <OverflowToolbarButton
+                        type="Transparent"
+                        icon="sap-icon://full-screen"
+                        press="handleFullScreen"
+                        tooltip="Enter Full Screen"
+                        visible="{= ${ui>/actionButtonsInfo/midColumn/fullScreen} !== null }"/>
+                    <OverflowToolbarButton
+                        type="Transparent"
+                        icon="sap-icon://exit-full-screen"
+                        press="handleExitFullScreen"
+                        tooltip="Exit Full Screen"
+                        visible="{= ${ui>/actionButtonsInfo/midColumn/exitFullScreen} !== null }"/>
+                    <OverflowToolbarButton
+                        type="Transparent"
+                        icon="sap-icon://decline"
+                        press="handleClose"
+                        tooltip="Close"
+                        visible="{= ${ui>/actionButtonsInfo/midColumn/closeColumn} !== null }"/>
+                </uxap:navigationActions>
+            </uxap:ObjectPageDynamicHeaderTitle>
+        </uxap:headerTitle>
+        <uxap:headerContent>
+            <HBox alignItems="Start" class="artistAlbumsHeader">
+                <Avatar
+                    src="{music>/currentArtistIcon}"
+                    fallbackIcon="sap-icon://person-placeholder"
+                    displaySize="XL"
+                    class="artistAlbumsAvatar"/>
+                <VBox class="artistAlbumsHeaderInfo">
+                    <Text text="{music>/currentArtistTags}"
+                          class="artistAlbumsTags"
+                          visible="{= !!${music>/currentArtistTags}}"/>
+                    <Text text="{music>/currentArtistListeners}" class="artistAlbumsListeners"/>
+                    <Text text="{music>/currentArtistBio}"
+                          class="artistAlbumsBio"
+                          wrapping="true"
+                          visible="{= !!${music>/currentArtistBio}}"/>
+                </VBox>
+            </HBox>
+        </uxap:headerContent>
+        <uxap:sections>
+            <uxap:ObjectPageSection
+                id="albumsSection"
+                title="{= 'Albums (' + ${music>/albums}.length + ')'}"
+                titleUppercase="false">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection id="albumsSubSection" showTitle="false">
+                        <uxap:blocks>
+                            <VBox width="100%">
+                                <Toolbar
+                                    class="albumsToolbar"
+                                    visible="{= ${music>/albums}.length > 1 }">
+                                    <Text
+                                        text="{= ${music>/albums}.length + (${music>/albums}.length === 1 ? ' album' : ' albums')}"
+                                        class="albumsToolbarCount"/>
+                                    <ToolbarSpacer/>
+                                    <core:Icon src="sap-icon://sort" class="albumSortIcon"/>
+                                    <Text text="Sort by" class="albumSortLabel"/>
+                                    <Select
+                                        id="albumSortSelect"
+                                        selectedKey="{music>/albumSortBy}"
+                                        change="onAlbumSortChange"
+                                        width="9rem"
+                                        class="albumSortSelect">
+                                        <core:Item key="popularity" text="Most Played"/>
+                                        <core:Item key="year" text="Newest First"/>
+                                        <core:Item key="yearAsc" text="Oldest First"/>
+                                    </Select>
+                                </Toolbar>
+                                <List
+                                    id="albumList"
+                                    items="{music>/albums}"
+                                    mode="SingleSelectMaster"
+                                    selectionChange="onNavToAlbumDetail"
+                                    noDataText="{= ${music>/loadingAlbums} ? 'Loading albums...' : 'No albums found'}"
+                                    busy="{music>/loadingAlbums}"
+                                    busyIndicatorDelay="0"
+                                    showSeparators="None">
+                                    <CustomListItem class="albumListItem" type="Navigation">
+                                        <HBox alignItems="Center" width="100%" class="albumItemContent">
+                                            <Avatar
+                                                src="{music>imageUrl}"
+                                                fallbackIcon="sap-icon://music"
+                                                displaySize="S"
+                                                displayShape="Square"
+                                                class="albumCoverThumb"/>
+                                            <VBox class="albumInfo">
+                                                <Text text="{music>name}" class="albumName" maxLines="1" wrapping="false"/>
+                                                <Text text="{path: 'music>playcount', formatter: '.formatPlaycount'}" class="albumPlaycount"/>
+                                            </VBox>
+                                        </HBox>
+                                    </CustomListItem>
+                                </List>
+                            </VBox>
+                        </uxap:blocks>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+            <uxap:ObjectPageSection
+                id="aboutSection"
+                title="About"
+                titleUppercase="false"
+                visible="{= !!${music>/currentArtistFullBio} }">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection id="aboutSubSection" showTitle="false">
+                        <uxap:blocks>
+                            <VBox class="aboutSectionContent">
+                                <Text
+                                    text="{music>/currentArtistFullBio}"
+                                    renderWhitespace="true"
+                                    wrapping="true"
+                                    class="artistFullBio"
+                                    visible="{= !!${music>/currentArtistFullBio} }"/>
+                            </VBox>
+                        </uxap:blocks>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+            <uxap:ObjectPageSection
+                id="similarArtistsSection"
+                title="Similar Artists"
+                titleUppercase="false"
+                visible="{= ${music>/similarArtists}.length > 0 }">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection id="similarArtistsSubSection" showTitle="false">
+                        <uxap:blocks>
+                            <List
+                                id="similarArtistsList"
+                                items="{music>/similarArtists}"
+                                mode="None"
+                                showSeparators="None"
+                                showNoData="false"
+                                class="similarArtistsList">
+                                <CustomListItem type="Active" press="onSimilarArtistPress" class="similarArtistCard">
+                                    <VBox alignItems="Center" class="similarArtistCardContent">
+                                        <Avatar
+                                            src="{music>icon}"
+                                            fallbackIcon="sap-icon://person-placeholder"
+                                            displaySize="M"
+                                            class="similarArtistAvatar"/>
+                                        <Text text="{music>name}" class="similarArtistName" maxLines="1" wrapping="false"/>
+                                    </VBox>
+                                </CustomListItem>
+                            </List>
+                        </uxap:blocks>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+        </uxap:sections>
+    </uxap:ObjectPageLayout>
+</mvc:View>

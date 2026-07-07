@@ -1,0 +1,970 @@
+/* ── Theme tokens (defaults = Ocean Blue) ────────────────── */
+:root {
+    --app-primary:           #0070F2;
+    --app-primary-rgb:       0, 112, 242;
+    --app-primary-light:     #5AABFF;
+    --app-primary-light-rgb: 90, 171, 255;
+    --app-dark-bg:           #1a1a2e;
+}
+
+.musicLibIcon {
+    font-size: 1.5rem;
+    color: var(--app-primary);
+}
+
+.albumArtistLink {
+    font-weight: bold;
+    font-size: 1rem;
+    color: var(--app-primary-light) !important;
+}
+
+.albumCoverAvatar {
+    min-width: 6rem;
+}
+
+.playButton {
+    background-color: var(--app-primary) !important;
+    border-color: var(--app-primary) !important;
+}
+
+.trackRank {
+    color: #888;
+    font-size: 0.875rem;
+}
+
+.trackDuration {
+    color: #888;
+    font-size: 0.875rem;
+}
+
+.musicAppShell {
+    height: 100%;
+}
+
+.musicFCL {
+    height: 100%;
+}
+
+.sapFFCLColumnEnd .sapUxAPObjectPageWrapper {
+    scrollbar-width: none !important;        /* Firefox */
+    -ms-overflow-style: none !important;     /* IE / Edge legacy */
+}
+.sapFFCLColumnEnd .sapUxAPObjectPageWrapper::-webkit-scrollbar {
+    display: none !important;                /* Chrome / Safari / Edge */
+}
+
+.miniPlayerBar.sapMBar,
+.miniPlayerBar {
+    background-color: var(--app-dark-bg) !important;
+    border-top: 2px solid var(--app-primary) !important;
+    height: 4rem !important;
+    min-height: 4rem !important;
+    max-height: none !important;
+    padding: 0 1rem;
+    box-sizing: border-box;
+}
+
+.miniPlayerBar .sapMBarContainer {
+    height: 4rem !important;
+    overflow: visible !important;
+}
+
+.miniPlayerAvatar {
+    margin-right: 0.75rem;
+    flex-shrink: 0;
+}
+
+.miniPlayerTrackInfo {
+    max-width: 18rem;
+    min-width: 0;
+    overflow: hidden;
+    margin-left: 0.25rem;
+}
+
+.trackNameRow {
+    min-width: 0;
+    overflow: hidden;
+}
+
+.playerTrackName.sapMText,
+.miniPlayerBar .playerTrackName {
+    font-weight: 700 !important;
+    font-size: 0.9rem !important;
+    letter-spacing: 0.01em !important;
+    color: #ffffff !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    /* shrinks to let the badge stay visible */
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+}
+
+.playerArtistName.sapMText,
+.miniPlayerBar .playerArtistName {
+    font-size: 0.775rem !important;
+    font-weight: 400 !important;
+    color: rgba(255, 255, 255, 0.58) !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    margin-top: 0.05rem !important;
+}
+
+.miniPlayButton {
+    margin: 0 0.25rem;
+    min-width: 2.5rem;
+}
+
+
+.playerTime,
+.playerTime.sapMText,
+.miniPlayerBar .playerTime,
+.miniPlayerBar .playerTime span {
+    font-size: 0.75rem;
+    color: #aaaaaa !important;
+    font-variant-numeric: tabular-nums;
+    min-width: 2.5rem;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.miniPlayerAvatar.sapFAvatar {
+    flex-shrink: 0;
+    margin-right: 0.75rem;
+}
+
+.playingTrackIcon {
+    color: var(--app-primary);
+    font-size: 0.875rem;
+    padding-right: 0.25rem;
+}
+
+/* ── Artist page: header ─────────────────────────────────── */
+.artistCountSubtitle,
+.artistCountSubtitle.sapMText,
+.artistCountSubtitle span {
+    font-size: 0.75rem;
+    color: #aaaaaa !important;
+    margin-top: 0.125rem;
+}
+
+/* ── Genre chips ─────────────────────────────────────────── */
+.genreChipsBar {
+    gap: 0.5rem;
+}
+
+.genreChip.sapMBtn {
+    border-radius: 1.25rem !important;
+    border: 1.5px solid rgba(var(--app-primary-rgb), 0.45) !important;
+    color: var(--app-primary-light) !important;
+    background: rgba(var(--app-primary-rgb), 0.08) !important;
+    min-width: unset !important;
+    height: 2rem !important;
+    padding: 0 1rem !important;
+    font-size: 0.8125rem !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.01em !important;
+    transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease !important;
+    margin-bottom: 0.25rem;
+}
+
+.genreChip.sapMBtn:hover {
+    background: rgba(var(--app-primary-rgb), 0.18) !important;
+    border-color: var(--app-primary) !important;
+}
+
+.genreChipActive.sapMBtn,
+.genreChipActive.sapMBtn:hover {
+    background: var(--app-primary) !important;
+    border-color: var(--app-primary) !important;
+    color: #ffffff !important;
+    font-weight: 600 !important;
+    box-shadow: 0 2px 10px rgba(var(--app-primary-rgb), 0.45) !important;
+}
+
+
+/* ── Favorite toggle button on each artist row ───────────── */
+.favoriteToggleBtn.sapMBtn {
+    color: rgba(255, 255, 255, 0.25) !important;
+    flex-shrink: 0;
+    min-width: 2.25rem !important;
+    margin-left: 0.25rem;
+    transition: color 0.15s ease !important;
+}
+
+.favoriteToggleBtn.sapMBtn:hover {
+    color: rgba(255, 255, 255, 0.6) !important;
+    background: transparent !important;
+}
+
+.favoriteToggleBtn.sapMTogBtnPressed.sapMBtn,
+.favoriteToggleBtn.sapMTogBtnPressed.sapMBtn:hover {
+    color: #F59E0B !important;
+    background: transparent !important;
+}
+
+/* ── Sort / filter toolbar ───────────────────────────────── */
+.artistSortBar.sapMOTB,
+.artistSortBar {
+    background: transparent !important;
+    border-bottom: 1px solid rgba(var(--app-primary-rgb), 0.2) !important;
+    min-height: 2.75rem !important;
+}
+
+/* ── Artist list items (CustomListItem) ──────────────────── */
+.artistListItem.sapMLIB {
+    background: transparent !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+    transition: background 0.15s ease, box-shadow 0.15s ease !important;
+}
+
+.artistListItem.sapMLIB:hover {
+    background: rgba(var(--app-primary-rgb), 0.08) !important;
+}
+
+/* Top-3 get a left accent without affecting layout */
+.artistListItem.sapMLIB:nth-child(-n+3) {
+    box-shadow: inset 3px 0 0 var(--app-primary);
+}
+
+.artistListItem.sapMLIB.sapMLIBSelected,
+.artistListItem.sapMLIB.sapMLIBSelected:hover {
+    background: rgba(var(--app-primary-rgb), 0.18) !important;
+    box-shadow: inset 3px 0 0 var(--app-primary) !important;
+}
+
+.artistItemContent {
+    padding: 0.625rem 0.75rem;
+    box-sizing: border-box;
+}
+
+/* ── Rank number ─────────────────────────────────────────── */
+.artistRank.sapMText,
+.artistRank {
+    font-size: 0.7rem !important;
+    font-weight: 700 !important;
+    color: var(--app-primary) !important;
+    min-width: 1.75rem;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.artistRankGold.sapMText,
+.artistRankGold {
+    color: #F59E0B !important;
+    font-size: 0.8rem !important;
+}
+
+.artistRankSilver.sapMText,
+.artistRankSilver {
+    color: #94A3B8 !important;
+    font-size: 0.8rem !important;
+}
+
+.artistRankBronze.sapMText,
+.artistRankBronze {
+    color: #B45309 !important;
+    font-size: 0.8rem !important;
+}
+
+/* ── Artist avatar ───────────────────────────────────────── */
+.artistAvatar {
+    flex-shrink: 0;
+    margin-left: 0.25rem;
+    margin-right: 0.75rem;
+}
+
+/* ── Artist info text block ──────────────────────────────── */
+.artistInfo {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+}
+
+.artistName.sapMText,
+.artistName {
+    font-weight: 600 !important;
+    font-size: 0.9375rem !important;
+    color: #ffffff !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+}
+
+.artistListeners.sapMText,
+.artistListeners {
+    font-size: 0.75rem !important;
+    color: #aaaaaa !important;
+    margin-top: 0.125rem;
+}
+
+/* ── Now-playing pulse icon ──────────────────────────────── */
+.nowPlayingIcon.sapUiIcon {
+    color: var(--app-primary-light);
+    font-size: 1rem;
+    margin-left: 0.5rem;
+    filter: drop-shadow(0 0 4px rgba(var(--app-primary-light-rgb), 0.7));
+    animation: nowPlayingPulse 1.2s ease-in-out infinite;
+}
+
+@keyframes nowPlayingPulse {
+    0%, 100% { opacity: 1;    filter: drop-shadow(0 0 5px rgba(var(--app-primary-light-rgb), 0.8)); }
+    50%       { opacity: 0.6; filter: drop-shadow(0 0 2px rgba(var(--app-primary-light-rgb), 0.3)); }
+}
+
+/* ── Artist albums: header content ───────────────────────── */
+.artistAlbumsHeader {
+    padding: 0.25rem 0 1rem;
+}
+
+.artistAlbumsAvatar {
+    flex-shrink: 0;
+}
+
+.artistAlbumsHeaderInfo {
+    margin-left: 1.25rem;
+    justify-content: center;
+}
+
+.artistAlbumsTags.sapMText,
+.artistAlbumsTags {
+    font-size: 0.75rem !important;
+    font-weight: 600 !important;
+    color: var(--app-primary-light) !important;
+    letter-spacing: 0.04em !important;
+    text-transform: uppercase !important;
+    margin-bottom: 0.375rem;
+}
+
+.artistAlbumsListeners.sapMText,
+.artistAlbumsListeners {
+    font-size: 0.875rem !important;
+    color: #aaaaaa !important;
+    margin-bottom: 0.625rem;
+}
+
+.artistAlbumsBio.sapMText,
+.artistAlbumsBio {
+    font-size: 0.8125rem !important;
+    color: #cccccc !important;
+    line-height: 1.6 !important;
+    max-width: 42rem;
+    text-align: justify !important;
+}
+
+.albumMeta.sapMText,
+.albumMeta {
+    font-size: 0.8125rem !important;
+    color: rgba(255, 255, 255, 0.5) !important;
+    letter-spacing: 0.02em !important;
+    margin-bottom: 0.75rem;
+}
+
+/* ── Album details: snapped header ──────────────────────── */
+.snappedAlbumThumb {
+    flex-shrink: 0;
+    margin-right: 0.625rem;
+}
+
+.snappedAlbumInfo {
+    min-width: 0;
+}
+
+.snappedAlbumArtist.sapMText,
+.snappedAlbumArtist {
+    font-size: 0.7rem !important;
+    color: rgba(255, 255, 255, 0.5) !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.snappedAlbumTitle.sapMTitle,
+.snappedAlbumTitle {
+    font-size: 0.9375rem !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.albumDescription.sapMText,
+.albumDescription {
+    text-align: justify !important;
+    line-height: 1.6 !important;
+}
+
+/* ── Track table ─────────────────────────────────────────── */
+.trackTable.sapMTable {
+    background: transparent !important;
+}
+
+.trackTable .sapMListTblHeader {
+    background: transparent !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.trackColLabel.sapMLabel,
+.trackColLabel {
+    font-size: 0.7rem !important;
+    font-weight: 600 !important;
+    color: rgba(255, 255, 255, 0.35) !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.06em !important;
+}
+
+.trackTableItem.sapMLIB {
+    background: transparent !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04) !important;
+    transition: background 0.15s ease !important;
+}
+
+.trackTableItem.sapMLIB:hover {
+    background: rgba(var(--app-primary-rgb), 0.08) !important;
+}
+
+.trackTableItem.sapMLIB.sapMLIBSelected,
+.trackTableItem.sapMLIB.sapMLIBSelected:hover {
+    background: rgba(var(--app-primary-rgb), 0.15) !important;
+}
+
+.trackName.sapMText,
+.trackName {
+    font-size: 0.9rem !important;
+    color: #ffffff !important;
+}
+
+/* ── Albums toolbar: sort control ────────────────────────── */
+.albumsToolbar.sapMTB {
+    background: rgba(255, 255, 255, 0.03) !important;
+    border-radius: 0.5rem !important;
+    border: 1px solid rgba(255, 255, 255, 0.06) !important;
+    padding: 0 0.875rem !important;
+    margin-bottom: 0.875rem;
+    height: 2.75rem !important;
+}
+
+.albumsToolbarCount.sapMText,
+.albumsToolbarCount {
+    font-size: 0.8125rem !important;
+    font-weight: 600 !important;
+    color: #ffffff !important;
+}
+
+.albumSortIcon.sapUiIcon {
+    color: #888888 !important;
+    font-size: 0.875rem !important;
+    margin-right: 0.375rem;
+}
+
+.albumSortLabel.sapMText,
+.albumSortLabel {
+    font-size: 0.8125rem !important;
+    color: #aaaaaa !important;
+    margin-right: 0.5rem;
+    white-space: nowrap;
+}
+
+.albumSortSelect .sapMSelect {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* ── Artist about section: full bio + similar artists ────── */
+.aboutSectionContent {
+    max-width: 48rem;
+}
+
+
+.artistFullBio.sapMText,
+.artistFullBio {
+    font-size: 0.875rem !important;
+    color: #cccccc !important;
+    line-height: 1.7 !important;
+    text-align: justify !important;
+    text-align-last: left !important;
+    white-space: pre-wrap !important;
+    margin-bottom: 1.5rem;
+}
+
+
+.similarArtistsList.sapMList {
+    background: transparent !important;
+}
+
+.similarArtistsList.sapMList .sapMListUl {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 0.75rem;
+}
+
+.similarArtistCard.sapMLIB {
+    width: 7rem !important;
+    background: rgba(255, 255, 255, 0.03) !important;
+    border-radius: 0.5rem !important;
+    border: 1px solid rgba(255, 255, 255, 0.06) !important;
+    padding: 0.875rem 0.5rem !important;
+    transition: background 0.15s ease, border-color 0.2s ease, transform 0.15s ease !important;
+}
+
+.similarArtistCard.sapMLIB:hover {
+    background: rgba(var(--app-primary-rgb), 0.12) !important;
+    border-color: var(--app-primary) !important;
+    transform: translateY(-2px);
+}
+
+.similarArtistCardContent {
+    gap: 0.5rem;
+}
+
+.similarArtistAvatar {
+    flex-shrink: 0;
+}
+
+.similarArtistName.sapMText,
+.similarArtistName {
+    font-size: 0.8125rem !important;
+    color: #ffffff !important;
+    text-align: center !important;
+}
+
+/* ── Album list items ────────────────────────────────────── */
+.albumListItem.sapMLIB {
+    background: transparent !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+    transition: background 0.15s ease !important;
+}
+
+.albumListItem.sapMLIB:hover {
+    background: rgba(var(--app-primary-rgb), 0.08) !important;
+}
+
+.albumListItem.sapMLIB.sapMLIBSelected,
+.albumListItem.sapMLIB.sapMLIBSelected:hover {
+    background: rgba(var(--app-primary-rgb), 0.18) !important;
+    box-shadow: inset 3px 0 0 var(--app-primary) !important;
+}
+
+.albumItemContent {
+    padding: 0.625rem 0.75rem;
+    box-sizing: border-box;
+}
+
+.albumCoverThumb {
+    flex-shrink: 0;
+    margin-right: 1.125rem;
+    margin-left: 0.25rem;
+}
+
+.albumInfo {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+}
+
+.albumName.sapMText,
+.albumName {
+    font-weight: 600 !important;
+    font-size: 0.9375rem !important;
+    color: #ffffff !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+}
+
+.albumPlaycount.sapMText,
+.albumPlaycount {
+    font-size: 0.75rem !important;
+    color: #aaaaaa !important;
+    margin-top: 0.125rem;
+}
+
+/* ── Queue position badge ─────────────────────────────────── */
+.playerQueueBadge.sapMText,
+.miniPlayerBar .playerQueueBadge {
+    flex-shrink: 0 !important;
+    flex-grow: 0 !important;
+    white-space: nowrap !important;
+    margin-left: 0.4rem !important;
+    line-height: 1 !important;
+}
+
+/* Style the inner span as a pill chip */
+.playerQueueBadge span,
+.miniPlayerBar .playerQueueBadge span {
+    display: inline-flex !important;
+    align-items: center !important;
+    font-size: 0.6rem !important;
+    font-weight: 500 !important;
+    font-variant-numeric: tabular-nums !important;
+    color: rgba(255, 255, 255, 0.52) !important;
+    background: rgba(255, 255, 255, 0.09) !important;
+    border: 1px solid rgba(255, 255, 255, 0.14) !important;
+    border-radius: 0.75rem !important;
+    padding: 0.1rem 0.38rem !important;
+    line-height: 1.4 !important;
+    vertical-align: middle !important;
+}
+
+/* ── Volume / progress right section layout ───────────────── */
+.miniPlayerRight {
+    align-items: center;
+}
+
+.volumeGroup,
+.progressGroup {
+    display: flex !important;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.volumeGroup {
+    padding-right: 1rem;
+}
+
+.progressGroup {
+    padding-left: 1rem;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ── Volume icon ──────────────────────────────────────────── */
+.volumeIcon.sapUiIcon {
+    color: rgba(255, 255, 255, 0.5) !important;
+    font-size: 0.875rem;
+    flex-shrink: 0;
+    cursor: default;
+    transition: color 0.15s ease, opacity 0.15s ease !important;
+}
+
+.volumeIconMuted.sapUiIcon {
+    opacity: 0.3 !important;
+}
+
+/* ── Slider shared base: use .miniPlayerBar ancestor for guaranteed
+      specificity win over SAP Horizon theme's own !important rules ── */
+.miniPlayerBar .sapMSlider.playerSlider,
+.miniPlayerBar .sapMSlider.volumeSlider {
+    padding: 0 !important;
+    height: 1.5rem !important;
+    display: flex !important;
+    align-items: center !important;
+    overflow: visible !important;
+}
+
+/* Track */
+.miniPlayerBar .sapMSlider.playerSlider .sapMSliderInner,
+.miniPlayerBar .sapMSlider.volumeSlider .sapMSliderInner {
+    height: 3px !important;
+    min-height: 3px !important;
+    max-height: 3px !important;
+    border: none !important;
+    border-radius: 2px !important;
+    box-shadow: none !important;
+    background-color: rgba(255, 255, 255, 0.18) !important;
+    overflow: visible !important;
+}
+
+/* Filled portion */
+.miniPlayerBar .sapMSlider.playerSlider .sapMSliderProgress {
+    height: 100% !important;
+    background-color: var(--app-primary) !important;
+    border-radius: 2px !important;
+}
+.miniPlayerBar .sapMSlider.volumeSlider .sapMSliderProgress {
+    height: 100% !important;
+    background-color: rgba(255, 255, 255, 0.58) !important;
+    border-radius: 2px !important;
+}
+
+/* Thumb — override size/shape SAP Horizon sets via var(--sapField_Height) */
+.miniPlayerBar .sapMSlider.playerSlider .sapMSliderHandle,
+.miniPlayerBar .sapMSlider.playerSlider .sapMSliderHandle:hover,
+.miniPlayerBar .sapMSlider.playerSlider .sapMSliderHandle:focus {
+    width: 12px !important;
+    height: 12px !important;
+    min-width: 12px !important;
+    min-height: 12px !important;
+    background-color: var(--app-primary) !important;
+    border: none !important;
+    border-radius: 50% !important;
+    box-shadow: 0 0 0 3px rgba(var(--app-primary-rgb), 0.32) !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    margin-top: 0 !important;
+    margin-left: -6px !important;
+    outline: none !important;
+}
+
+.miniPlayerBar .sapMSlider.volumeSlider .sapMSliderHandle,
+.miniPlayerBar .sapMSlider.volumeSlider .sapMSliderHandle:hover,
+.miniPlayerBar .sapMSlider.volumeSlider .sapMSliderHandle:focus {
+    width: 10px !important;
+    height: 10px !important;
+    min-width: 10px !important;
+    min-height: 10px !important;
+    background-color: #ffffff !important;
+    border: none !important;
+    border-radius: 50% !important;
+    box-shadow: none !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    margin-top: 0 !important;
+    margin-left: -5px !important;
+    outline: none !important;
+}
+
+/* Pseudo-elements on the handle (some Horizon variants render the visual here) */
+.miniPlayerBar .sapMSlider.playerSlider .sapMSliderHandle::before,
+.miniPlayerBar .sapMSlider.playerSlider .sapMSliderHandle::after,
+.miniPlayerBar .sapMSlider.volumeSlider .sapMSliderHandle::before,
+.miniPlayerBar .sapMSlider.volumeSlider .sapMSliderHandle::after {
+    display: none !important;
+}
+
+/* ── Shuffle / Repeat mode buttons ───────────────────────── */
+.miniPlayerBar .playerModeBtn.sapMBtn,
+.miniPlayerBar .playerModeBtn.sapMTogBtn {
+    width: 2rem !important;
+    min-width: 2rem !important;
+    height: 2rem !important;
+    padding: 0 !important;
+    margin: 0 0.2rem !important;
+    background: transparent !important;
+    border: none !important;
+    color: rgba(255, 255, 255, 0.35) !important;
+    transition: color 0.15s ease !important;
+}
+
+.miniPlayerBar .playerModeBtn.sapMBtn:hover,
+.miniPlayerBar .playerModeBtn.sapMTogBtn:hover {
+    color: rgba(255, 255, 255, 0.75) !important;
+    background: transparent !important;
+}
+
+/* Shuffle active (ToggleButton pressed) */
+.miniPlayerBar .playerModeBtn.sapMTogBtnPressed.sapMTogBtn {
+    color: var(--app-primary-light) !important;
+    background: transparent !important;
+}
+
+
+/* ── Loading spin on play button ──────────────────────────── */
+.miniPlayButton.sapMBtnDisabled .sapMBtnIcon,
+.miniPlayButton.sapMBtn:disabled .sapMBtnIcon {
+    animation: miniPlayerSpin 0.9s linear infinite;
+}
+
+@keyframes miniPlayerSpin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+/* Keep the emphasized colour even when disabled / loading */
+.miniPlayButton.sapMBtnDisabled,
+.miniPlayButton.sapMBtnDisabled:hover {
+    background-color: var(--app-primary) !important;
+    border-color: var(--app-primary) !important;
+    opacity: 0.75 !important;
+}
+
+/* ── Queue drawer ────────────────────────────────────────── */
+.queueDrawer.sapMDialog {
+    background: var(--app-dark-bg) !important;
+    border: 1px solid rgba(var(--app-primary-rgb), 0.25) !important;
+    border-radius: 0.75rem !important;
+}
+
+.queueDrawer .sapMDialogTitle {
+    font-size: 1.0625rem !important;
+    font-weight: 700 !important;
+    color: #ffffff !important;
+    border-bottom: none !important;
+}
+
+.queueSubBar.sapMBar,
+.queueSubBar {
+    background: transparent !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+    min-height: 2.25rem !important;
+    padding: 0 0.75rem !important;
+}
+
+.queueNowPlayingRow {
+    gap: 0.375rem;
+}
+
+.queueNowPlayingHeaderIcon.sapUiIcon {
+    color: var(--app-primary-light) !important;
+    font-size: 0.7rem !important;
+    animation: nowPlayingPulse 1.2s ease-in-out infinite;
+    flex-shrink: 0;
+}
+
+.queueNowPlayingHeaderText.sapMText,
+.queueNowPlayingHeaderText {
+    font-size: 0.75rem !important;
+    color: rgba(255, 255, 255, 0.6) !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 14rem;
+}
+
+.queueCountBadge.sapMText,
+.queueCountBadge {
+    font-size: 0.7rem !important;
+    font-weight: 500 !important;
+    color: var(--app-primary-light) !important;
+    background: rgba(var(--app-primary-rgb), 0.15) !important;
+    border: 1px solid rgba(var(--app-primary-rgb), 0.3) !important;
+    border-radius: 0.75rem !important;
+    padding: 0.15rem 0.55rem !important;
+    white-space: nowrap;
+}
+
+.queueList.sapMList {
+    background: transparent !important;
+}
+
+.queueListItem.sapMLIB {
+    background: transparent !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+    transition: background 0.15s ease !important;
+}
+
+.queueListItem.sapMLIB:hover {
+    background: rgba(var(--app-primary-rgb), 0.08) !important;
+}
+
+.queueListItemActive.sapMLIB,
+.queueListItemActive.sapMLIB:hover {
+    background: rgba(var(--app-primary-rgb), 0.15) !important;
+    border-left: 2px solid var(--app-primary-light) !important;
+}
+
+.queueListItemActive .queueItemName.sapMText,
+.queueListItemActive .queueItemName {
+    color: var(--app-primary-light) !important;
+}
+
+.queueItemContent {
+    padding: 0.5rem 0.75rem;
+    box-sizing: border-box;
+}
+
+.queueDragHandle.sapUiIcon {
+    color: rgba(255, 255, 255, 0.25);
+    font-size: 0.875rem;
+    min-width: 1.25rem;
+    flex-shrink: 0;
+    margin-right: 0.25rem;
+    cursor: grab;
+}
+
+.queueListItem.sapMLIB:hover .queueDragHandle.sapUiIcon {
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.queueNowPlayingIcon.sapUiIcon {
+    color: var(--app-primary-light);
+    font-size: 0.8rem;
+    min-width: 1.5rem;
+    flex-shrink: 0;
+    animation: nowPlayingPulse 1.2s ease-in-out infinite;
+}
+
+.queueItemRank.sapMText,
+.queueItemRank {
+    font-size: 0.7rem !important;
+    color: rgba(255, 255, 255, 0.35) !important;
+    min-width: 1.5rem;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.queueItemInfo {
+    flex: 1;
+    min-width: 0;
+    margin: 0 0.75rem;
+    overflow: hidden;
+}
+
+.queueItemName.sapMText,
+.queueItemName {
+    font-size: 0.875rem !important;
+    font-weight: 600 !important;
+    color: #ffffff !important;
+}
+
+.queueItemSub.sapMText,
+.queueItemSub {
+    font-size: 0.75rem !important;
+    color: rgba(255, 255, 255, 0.45) !important;
+    margin-top: 0.1rem;
+}
+
+.queueItemDuration.sapMText,
+.queueItemDuration {
+    font-size: 0.75rem !important;
+    color: rgba(255, 255, 255, 0.45) !important;
+    flex-shrink: 0;
+    font-variant-numeric: tabular-nums;
+}
+
+.queueRemoveBtn.sapMBtn {
+    color: rgba(255, 255, 255, 0.25) !important;
+    min-width: 2rem !important;
+    flex-shrink: 0;
+    transition: color 0.15s ease !important;
+}
+
+.queueRemoveBtn.sapMBtn:hover {
+    color: rgba(255, 255, 255, 0.7) !important;
+    background: transparent !important;
+}
+
+/* ── Theme picker popover ────────────────────────────────── */
+.themePickerContent {
+    padding: 1rem 0.75rem;
+    gap: 0.5rem;
+}
+
+.themeSwatchWrapper {
+    gap: 0.375rem;
+}
+
+.themeSwatchBtn.sapMBtn {
+    width: 2.75rem !important;
+    height: 2.75rem !important;
+    min-width: 2.75rem !important;
+    border-radius: 50% !important;
+    border: none !important;
+    padding: 0 !important;
+    transition: transform 0.15s ease, box-shadow 0.15s ease !important;
+}
+
+.themeSwatchBtn.sapMBtn:hover {
+    transform: scale(1.1) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+}
+
+.themeSwatchBlue.sapMBtn   { background-color: #0070F2 !important; }
+.themeSwatchPurple.sapMBtn { background-color: #7C3AED !important; }
+.themeSwatchGreen.sapMBtn  { background-color: #059669 !important; }
+.themeSwatchRed.sapMBtn    { background-color: #DC2626 !important; }
+.themeSwatchAmber.sapMBtn  { background-color: #D97706 !important; }
+
+/* Active swatch — double-ring highlight */
+.themeSwatchActive.sapMBtn {
+    box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px rgba(0, 0, 0, 0.4) !important;
+    transform: scale(1.05) !important;
+}
+
+.themeSwatchLabel.sapMText,
+.themeSwatchLabel {
+    font-size: 0.7rem !important;
+    color: #666 !important;
+    margin-top: 0.125rem;
+}
