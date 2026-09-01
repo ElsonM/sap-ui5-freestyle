@@ -1,8 +1,8 @@
 ---
-name: BDEF Creation
+name: "task-bdef-creation"
 description: Behavior Definition specialist for RAP transactional business logic
 argument-hint: Describe the behavior definition requirements
-tools: ['read',  'abap-mcp/*', 'agent']
+tools: ['read', 'abap-mcp/*', 'agent']
 user-invocable: false
 ---
 
@@ -46,7 +46,6 @@ sap_help_search("behavior definition actions")
 ## MCP Tools Used
 
 - `CreateAIObject(object_type='behaviour_definition')` - Create BDEF files
-- `GetATCResults` - Validate BDEF syntax
 - `GetObjectInfo` - Inspect CDS view structure
 - `sap_help_search` - Query RAP documentation
 - `sap_community_search` - Find RAP patterns
@@ -70,17 +69,10 @@ sap_help_search("behavior definition actions")
 - Define validations, determinations, actions
 - Configure associations (for parent-child)
 
-### 3. Validate with ATC
-Run `GetATCResults` to check for:
-- Syntax errors
-- Missing required elements
-- Invalid field references
-- Inconsistent configuration
+### 3. Present for Review
+Show generated BDEF code and wait for user confirmation.
 
-### 4. Present for Review
-Show generated BDEF code with ATC findings and wait for user confirmation.
-
-### 5. Execute Creation
+### 4. Execute Creation
 Run `CreateAIObject` after user approval.
 
 ## BDEF Patterns
@@ -436,7 +428,6 @@ Always prioritize SAP Help Portal and SAP Community for ABAP-specific guidance.
 ## Notes
 
 - **Implementation Agent**: This is an IMPLEMENTATION agent - creates objects directly
-- **Validation First**: Always run GetATCResults before CreateAIObject
 - **User Confirmation Required**: Present plan and wait for approval
 - **CDS Dependency**: BDEF must reference existing CDS view
 - **Behavior Pool Auto-Created**: Implementation class (ZBP_AI_*) will be auto-generated skeleton

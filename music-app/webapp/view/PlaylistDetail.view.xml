@@ -1,0 +1,123 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns:uxap="sap.uxap" xmlns="sap.m" xmlns:core="sap.ui.core" controllerName="at.clouddna.music.controller.PlaylistDetail" displayBlock="true">
+    <uxap:ObjectPageLayout id="playlistDetailPage" alwaysShowContentHeader="false" showHeaderContent="true">
+        <uxap:headerTitle>
+            <uxap:ObjectPageDynamicHeaderTitle id="playlistDetailDynamicTitle">
+                <uxap:expandedHeading>
+                    <Title text="{playlist>/name}" wrapping="true" class="sapUiSmallMarginEnd"/>
+                </uxap:expandedHeading>
+                <uxap:snappedHeading>
+                    <Title text="{playlist>/name}" level="H5" wrapping="false"/>
+                </uxap:snappedHeading>
+                <uxap:navigationActions>
+                    <OverflowToolbarButton
+                        type="Transparent"
+                        icon="sap-icon://full-screen"
+                        press="handleFullScreen"
+                        tooltip="Enter Full Screen"
+                        visible="{= ${ui>/actionButtonsInfo/midColumn/fullScreen} !== null }"/>
+                    <OverflowToolbarButton
+                        type="Transparent"
+                        icon="sap-icon://exit-full-screen"
+                        press="handleExitFullScreen"
+                        tooltip="Exit Full Screen"
+                        visible="{= ${ui>/actionButtonsInfo/midColumn/exitFullScreen} !== null }"/>
+                    <OverflowToolbarButton
+                        type="Transparent"
+                        icon="sap-icon://decline"
+                        press="handleClose"
+                        tooltip="Close"
+                        visible="{= ${ui>/actionButtonsInfo/midColumn/closeColumn} !== null }"/>
+                </uxap:navigationActions>
+            </uxap:ObjectPageDynamicHeaderTitle>
+        </uxap:headerTitle>
+        <uxap:headerContent>
+            <HBox alignItems="Start" wrap="Wrap">
+                <VBox justifyContent="Center">
+                    <Text
+                        text="{= ${playlist>/tracks}.length + (${playlist>/tracks}.length === 1 ? ' track' : ' tracks') }"
+                        class="albumMeta"/>
+                    <HBox class="sapUiSmallMarginTop">
+                        <Button
+                            id="playBtn"
+                            text="Play"
+                            type="Emphasized"
+                            icon="sap-icon://play"
+                            press="onPlay"
+                            enabled="{= ${playlist>/tracks}.length > 0 }"
+                            class="sapUiSmallMarginEnd playButton"/>
+                        <Button
+                            id="shuffleBtn"
+                            text="Shuffle"
+                            icon="sap-icon://sort"
+                            press="onShuffle"
+                            enabled="{= ${playlist>/tracks}.length > 0 }"
+                            class="sapUiSmallMarginEnd"/>
+                        <Button
+                            id="deletePlaylistBtn"
+                            text="Delete Playlist"
+                            icon="sap-icon://delete"
+                            type="Transparent"
+                            press="onDeletePlaylist"/>
+                    </HBox>
+                </VBox>
+            </HBox>
+        </uxap:headerContent>
+        <uxap:sections>
+            <uxap:ObjectPageSection id="playlistTracksSection" title="Tracks" titleUppercase="false">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection id="playlistTracksSubSection" showTitle="false">
+                        <uxap:blocks>
+                            <Table
+                                id="playlistTrackTable"
+                                items="{playlist>/tracks}"
+                                fixedLayout="false"
+                                showSeparators="None"
+                                noDataText="This playlist is empty — add tracks from any album"
+                                class="trackTable">
+                                <columns>
+                                    <Column width="3rem" hAlign="End">
+                                        <Label text="#" class="trackColLabel"/>
+                                    </Column>
+                                    <Column>
+                                        <Label text="Title" class="trackColLabel"/>
+                                    </Column>
+                                    <Column width="5rem" hAlign="End" demandPopin="true" minScreenWidth="Tablet">
+                                        <Label text="Duration" class="trackColLabel"/>
+                                    </Column>
+                                    <Column width="3rem" hAlign="End"/>
+                                </columns>
+                                <items>
+                                    <ColumnListItem type="Active" press="onTrackPress" class="trackTableItem">
+                                        <cells>
+                                            <HBox alignItems="Center">
+                                                <core:Icon
+                                                    src="sap-icon://media-play"
+                                                    class="playingTrackIcon"
+                                                    visible="{= ${playlist>name} === ${player>/currentTrack/name} &amp;&amp; ${playlist>artistName} === ${player>/currentTrack/artistName} }"/>
+                                                <Text
+                                                    text="{playlist>rank}"
+                                                    class="trackRank"
+                                                    visible="{= !(${playlist>name} === ${player>/currentTrack/name} &amp;&amp; ${playlist>artistName} === ${player>/currentTrack/artistName}) }"/>
+                                            </HBox>
+                                            <VBox>
+                                                <Text text="{playlist>name}" class="trackName"/>
+                                                <Text text="{= ${playlist>artistName} + ' · ' + ${playlist>albumName} }" class="queueItemSub"/>
+                                            </VBox>
+                                            <Text text="{playlist>duration}" class="trackDuration"/>
+                                            <Button
+                                                icon="sap-icon://decline"
+                                                type="Transparent"
+                                                press="onRemoveTrack"
+                                                tooltip="Remove from playlist"
+                                                class="queueRemoveBtn"/>
+                                        </cells>
+                                    </ColumnListItem>
+                                </items>
+                            </Table>
+                        </uxap:blocks>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+        </uxap:sections>
+    </uxap:ObjectPageLayout>
+</mvc:View>

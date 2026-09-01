@@ -925,6 +925,292 @@
     background: transparent !important;
 }
 
+/* ── Lyrics panel ────────────────────────────────────────── */
+.lyricsPanel.sapMDialog {
+    background: var(--app-dark-bg) !important;
+    border: 1px solid rgba(var(--app-primary-rgb), 0.25) !important;
+    border-radius: 0.75rem !important;
+}
+
+.lyricsPanel .sapMDialogTitle {
+    font-size: 1.0625rem !important;
+    font-weight: 700 !important;
+    color: #ffffff !important;
+    border-bottom: none !important;
+}
+
+.lyricsSubBar.sapMBar,
+.lyricsSubBar {
+    background: transparent !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+    min-height: 2.25rem !important;
+    padding: 0 0.75rem !important;
+}
+
+.lyricsNowPlayingRow {
+    gap: 0.375rem;
+}
+
+.lyricsNowPlayingHeaderIcon.sapUiIcon {
+    color: var(--app-primary-light) !important;
+    font-size: 0.7rem !important;
+    animation: nowPlayingPulse 1.2s ease-in-out infinite;
+    flex-shrink: 0;
+}
+
+.lyricsNowPlayingHeaderText.sapMText,
+.lyricsNowPlayingHeaderText {
+    font-size: 0.75rem !important;
+    color: rgba(255, 255, 255, 0.6) !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 14rem;
+}
+
+.lyricsStatusBox {
+    padding: 2.5rem 1rem;
+    gap: 0.5rem;
+}
+
+.lyricsEmptyIcon.sapUiIcon {
+    color: rgba(255, 255, 255, 0.25) !important;
+    font-size: 2rem !important;
+}
+
+.lyricsStatusText.sapMText,
+.lyricsStatusText {
+    font-size: 0.8125rem !important;
+    color: rgba(255, 255, 255, 0.45) !important;
+}
+
+.lyricsText.sapMText,
+.lyricsText {
+    display: block;
+    padding: 1rem 1.25rem;
+    font-size: 0.9rem !important;
+    color: #dddddd !important;
+    line-height: 1.8 !important;
+    white-space: pre-wrap !important;
+    text-align: center !important;
+}
+
+.lyricsLinesList.sapMList {
+    background: transparent !important;
+}
+
+.lyricsLineItem.sapMLIB {
+    background: transparent !important;
+    border: none !important;
+    padding: 0.3rem 1.25rem !important;
+}
+
+.lyricsLine.sapMText,
+.lyricsLine {
+    display: block;
+    font-size: 0.9rem !important;
+    color: rgba(255, 255, 255, 0.4) !important;
+    line-height: 1.7 !important;
+    text-align: center !important;
+    transition: color 0.2s ease, transform 0.2s ease !important;
+}
+
+.lyricsLineActive.sapMText,
+.lyricsLineActive {
+    color: #ffffff !important;
+    font-weight: 700 !important;
+    transform: scale(1.04);
+}
+
+/* ── Add-to-playlist button (track table) ────────────────── */
+.trackAddBtn.sapMBtn {
+    color: rgba(255, 255, 255, 0.25) !important;
+    min-width: 2rem !important;
+    flex-shrink: 0;
+    transition: color 0.15s ease !important;
+}
+
+.trackAddBtn.sapMBtn:hover {
+    color: var(--app-primary-light) !important;
+    background: transparent !important;
+}
+
+/* ── Add-to-playlist popover ──────────────────────────────── */
+.addToPlaylistPopover.sapMPopover {
+    background: var(--app-dark-bg) !important;
+}
+
+.addToPlaylistPopover .sapMPopoverCont {
+    background: var(--app-dark-bg) !important;
+}
+
+.addToPlaylistPopover .sapMPopoverHeader,
+.addToPlaylistPopover .sapMBar {
+    background: var(--app-dark-bg) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.addToPlaylistPopover .sapMPopoverHeader .sapMTitle,
+.addToPlaylistPopover .sapMPopoverHeader .sapMBarTitle {
+    color: #ffffff !important;
+}
+
+.addToPlaylistList.sapMList {
+    background: transparent !important;
+    max-height: 14rem;
+}
+
+.addToPlaylistList .sapMSLITitle {
+    color: #ffffff !important;
+    font-weight: 600 !important;
+}
+
+.addToPlaylistList .sapMSLIDescription {
+    color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.addToPlaylistList .sapMSLIIcon {
+    color: var(--app-primary-light) !important;
+}
+
+.addToPlaylistList .sapMLIB {
+    background: transparent !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+.addToPlaylistList .sapMLIB:hover {
+    background: rgba(var(--app-primary-rgb), 0.08) !important;
+}
+
+.addToPlaylistNewRow {
+    padding: 0.75rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    gap: 0.5rem;
+}
+
+.addToPlaylistInput .sapMInputBaseInner {
+    color: #ffffff !important;
+    background: rgba(255, 255, 255, 0.06) !important;
+}
+
+.addToPlaylistInput .sapMInputBaseInner::placeholder {
+    color: rgba(255, 255, 255, 0.35) !important;
+}
+
+/* ── Listening stats dashboard ───────────────────────────── */
+.statsContent {
+    padding: 0.25rem 0 1.5rem;
+    gap: 0.5rem;
+}
+
+.statsTileRow {
+    gap: 0.875rem;
+    margin-bottom: 1.5rem;
+}
+
+.statsTile {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 0.75rem;
+    padding: 1rem 1.5rem;
+    min-width: 9rem;
+}
+
+.statsTileValue.sapMText,
+.statsTileValue {
+    font-size: 1.75rem !important;
+    font-weight: 700 !important;
+    color: #ffffff !important;
+    line-height: 1.2 !important;
+}
+
+.statsTileLabel.sapMText,
+.statsTileLabel {
+    font-size: 0.8125rem !important;
+    color: rgba(255, 255, 255, 0.45) !important;
+    margin-top: 0.125rem;
+}
+
+.statsSectionTitle.sapMTitle,
+.statsSectionTitle {
+    font-size: 0.9375rem !important;
+    color: #ffffff !important;
+    margin: 0.75rem 0 0.5rem;
+}
+
+.statsArtistList.sapMList,
+.statsGenreList.sapMList {
+    background: transparent !important;
+    margin-bottom: 1rem;
+}
+
+.statsArtistItem.sapMLIB,
+.statsGenreItem.sapMLIB {
+    background: transparent !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+.statsArtistItemContent {
+    padding: 0.5rem 0.25rem;
+}
+
+.statsArtistRank.sapMText,
+.statsArtistRank {
+    font-size: 0.75rem !important;
+    font-weight: 700 !important;
+    color: var(--app-primary) !important;
+    min-width: 1.5rem;
+    flex-shrink: 0;
+}
+
+.statsArtistName.sapMText,
+.statsArtistName {
+    flex: 1;
+    font-size: 0.9375rem !important;
+    font-weight: 600 !important;
+    color: #ffffff !important;
+    margin-left: 0.5rem;
+}
+
+.statsArtistCount.sapMText,
+.statsArtistCount {
+    font-size: 0.8125rem !important;
+    color: rgba(255, 255, 255, 0.45) !important;
+    flex-shrink: 0;
+}
+
+.statsGenreItemContent {
+    padding: 0.5rem 0.25rem;
+    gap: 0.25rem;
+}
+
+.statsGenreName.sapMText,
+.statsGenreName {
+    font-size: 0.875rem !important;
+    font-weight: 600 !important;
+    color: #ffffff !important;
+}
+
+.statsGenrePercent.sapMText,
+.statsGenrePercent {
+    font-size: 0.8125rem !important;
+    color: var(--app-primary-light) !important;
+}
+
+.statsGenreBar.sapMPI {
+    height: 0.5rem !important;
+    border-radius: 0.25rem !important;
+    overflow: hidden;
+}
+
+.statsGenreBar .sapMPIBar {
+    background-color: var(--app-primary) !important;
+}
+
+.statsGenreBar .sapMPIBarRemaining {
+    background-color: rgba(255, 255, 255, 0.08) !important;
+}
+
 /* ── Theme picker popover ────────────────────────────────── */
 .themePickerContent {
     padding: 1rem 0.75rem;

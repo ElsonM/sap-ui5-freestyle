@@ -53,10 +53,23 @@
                             press="onToggleRepeat"
                             tooltip="{= ${player>/repeatMode} === 'off' ? 'Enable repeat' : (${player>/repeatMode} === 'all' ? 'Repeat current track' : 'Disable repeat') }"
                             class="playerModeBtn"/>
+                        <ToggleButton
+                            icon="sap-icon://broadcast"
+                            pressed="{player>/radioOn}"
+                            type="Transparent"
+                            press="onToggleRadio"
+                            tooltip="{= ${player>/radioOn} ? 'Disable Radio Mode' : 'Enable Radio Mode — keep playing similar artists when the queue ends' }"
+                            class="playerModeBtn"/>
                     </HBox>
                 </contentMiddle>
                 <contentRight>
                     <HBox alignItems="Center" class="miniPlayerRight">
+                        <Button
+                            icon="sap-icon://notes"
+                            type="Transparent"
+                            press="onOpenLyrics"
+                            tooltip="Show lyrics"
+                            class="playerModeBtn"/>
                         <Button
                             icon="sap-icon://list"
                             type="Transparent"

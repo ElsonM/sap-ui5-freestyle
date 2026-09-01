@@ -1,0 +1,63 @@
+<Dialog
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    title="Lyrics"
+    contentWidth="28rem"
+    contentHeight="22rem"
+    verticalScrolling="true"
+    class="lyricsPanel">
+    <subHeader>
+        <Bar class="lyricsSubBar">
+            <contentLeft>
+                <HBox
+                    alignItems="Center"
+                    class="lyricsNowPlayingRow"
+                    visible="{= !!${player>/currentTrack/name} }">
+                    <core:Icon src="sap-icon://media-play" class="lyricsNowPlayingHeaderIcon"/>
+                    <Text
+                        text="{= ${player>/currentTrack/name} + (${player>/currentTrack/artistName} ? ' · ' + ${player>/currentTrack/artistName} : '') }"
+                        class="lyricsNowPlayingHeaderText"
+                        maxLines="1"
+                        wrapping="false"/>
+                </HBox>
+            </contentLeft>
+        </Bar>
+    </subHeader>
+    <content>
+        <VBox
+            class="lyricsStatusBox"
+            alignItems="Center"
+            justifyContent="Center"
+            visible="{player>/lyrics/loading}">
+            <BusyIndicator size="2rem"/>
+            <Text text="Loading lyrics…" class="lyricsStatusText"/>
+        </VBox>
+        <VBox
+            class="lyricsStatusBox"
+            alignItems="Center"
+            justifyContent="Center"
+            visible="{= !${player>/lyrics/loading} &amp;&amp; !${player>/lyrics/lines}.length &amp;&amp; !${player>/lyrics/plainText} }">
+            <core:Icon src="sap-icon://document-text" class="lyricsEmptyIcon"/>
+            <Text text="No lyrics found for this track" class="lyricsStatusText"/>
+        </VBox>
+        <List
+            id="lyricsLinesList"
+            items="{player>/lyrics/lines}"
+            showSeparators="None"
+            class="lyricsLinesList"
+            visible="{= !${player>/lyrics/loading} &amp;&amp; ${player>/lyrics/lines}.length > 0 }">
+            <CustomListItem class="lyricsLineItem">
+                <Text
+                    text="{player>text}"
+                    class="{= ${player>active} ? 'lyricsLine lyricsLineActive' : 'lyricsLine' }"/>
+            </CustomListItem>
+        </List>
+        <Text
+            text="{player>/lyrics/plainText}"
+            class="lyricsText"
+            visible="{= !${player>/lyrics/loading} &amp;&amp; !${player>/lyrics/lines}.length &amp;&amp; !!${player>/lyrics/plainText} }"/>
+    </content>
+    <buttons>
+        <Button text="Close" press="onCloseLyrics" type="Transparent"/>
+    </buttons>
+</Dialog>

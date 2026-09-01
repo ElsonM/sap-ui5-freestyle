@@ -6,6 +6,7 @@ import FlexibleColumnLayout from "sap/f/FlexibleColumnLayout";
 import JSONModel from "sap/ui/model/json/JSONModel";
 import { initYoutubePlayer } from "./model/YoutubePlayer";
 import { loadSavedTheme } from "./model/themes";
+import { readFlag } from "./model/storage";
 
 /**
  * @namespace at.clouddna.music
@@ -27,9 +28,14 @@ export default class Component extends BaseComponent {
             albums: [],
             currentAlbum: null
         }), "music");
+        this.setModel(new JSONModel({
+            list: [],
+            newPlaylistName: ""
+        }), "playlists");
         const savedVol = parseInt(localStorage.getItem("musicApp.volume") ?? "80", 10);
         const savedRepeat = (localStorage.getItem("musicApp.repeatMode") ?? "off") as "off" | "all" | "one";
-        const savedShuffle = localStorage.getItem("musicApp.shuffleOn") === "true";
+        const savedShuffle = readFlag("musicApp.shuffleOn");
+        const savedRadio = readFlag("musicApp.radioOn");
         const playerModel = new JSONModel({
             isPlaying: false,
             isLoading: false,
@@ -44,7 +50,13 @@ export default class Component extends BaseComponent {
             visible: false,
             volume: savedVol,
             repeatMode: savedRepeat,
-            shuffleOn: savedShuffle
+            shuffleOn: savedShuffle,
+            radioOn: savedRadio,
+            lyrics: {
+                lines: [],
+                plainText: "",
+                loading: false
+            }
         });
         this.setModel(playerModel, "player");
         initYoutubePlayer(playerModel);

@@ -1,90 +1,62 @@
-<agents>
-Here is a list of agents that can be used when running a subagent.
-Each agent has optionally a description with the agent's purpose and expertise. When asked to run a subagent, choose the most appropriate agent from this list.
-Use the 'runSubagent' tool with the agent name to run the subagent.
+# SAP ABAP Development Workspace
 
-<agent>
-<name>SAP-Research</name>
-<description>Expert SAP Clean Core and Cloud Readiness compliance advisor. Validates ABAP code against ATC rules, identifies non-released API usage, finds released alternatives using GetReleasedAPI, and provides cloud-ready modernization guidance. Uses SAP Help Portal, Community, and ATC tools to enforce clean core principles, RAP best practices, CDS modeling, and S/4HANA Cloud compatibility.</description>
-<argumentHint>Specify ABAP object name and type for compliance analysis (e.g., "Analyze class ZCL_MY_CLASS" or "Check program ZREPORT_001")</argumentHint>
-</agent>
+This workspace is configured for AI-assisted SAP ABAP development through the **abap-mcp** MCP server, which connects directly to an SAP ABAP system via ADT (ABAP Development Tools) services. These instructions apply to every chat request in this workspace.
 
-<agent>
-<name>ABAP-Modernization</name>
-<description>Research and plan legacy ABAP code modernization for cloud readiness</description>
-<argumentHint>Specify legacy program name or modernization requirements</argumentHint>
-</agent>
+## MCP Server: abap-mcp
 
-<agent>
-<name>ABAP-Unit</name>
-<description>You are an expert ABAP Unit Testing specialist responsible for creating, maintaining, and executing comprehensive unit tests for ABAP development. Your primary goal is to ensure code quality, reliability, and maintainability through rigorous automated testing practices using ABAP Unit framework..</description>
-<argumentHint>ABAP Unit Testing, ".</argumentHint>
-</agent>
+The server is configured in `.vscode/mcp.json` (VS Code / GitHub Copilot). It exposes the following tools:
 
-<agent>
-<name>RAP-Analysis</name>
-<description>Research and plan end-to-end RAP application development</description>
-<argumentHint>Describe the RAP application requirements</argumentHint>
-</agent>
+| Tool | Purpose | Safety |
+|------|---------|--------|
+| `GetObjectInfo` | Retrieve source code / definition of any ABAP object (18 object types) | Read-only |
+| `SearchObject` | Find ABAP objects by name or pattern | Read-only |
+| `WhereUsedSearch` | Dependency / usage analysis for an object | Read-only |
+| `data_preview` | Execute SELECT-only queries on tables and CDS views | Read-only |
+| `sap_help_search` / `sap_help_get` | Search and retrieve official SAP Help Portal documentation | Read-only |
+| `sap_community_search` | Search SAP Community blogs and Q&A | Read-only |
+| `CreateAIObject` | Create new ABAP objects | Write — **$TMP package only** |
+| `ChangeAIObject` | Modify existing ABAP objects | Write — **$TMP objects only** |
+| `ActivateObject` | Activate an object and run syntax check | Write — **Z*/Y* objects only** |
 
-<agent>
-<name>BDEF Creation</name>
-<description>Behavior Definition specialist for RAP transactional business logic</description>
-<argumentHint>Describe the behavior definition requirements</argumentHint>
-</agent>
+## Available Agents (`.github/agents/`)
 
-<agent>
-<name>Behavior Implementation</name>
-<description>RAP Behavior Implementation Class specialist for handler/saver classes with EML</description>
-<argumentHint>Describe the behavior implementation requirements</argumentHint>
-</agent>
+Start with **ABAP-Architect** — it is the single user-invocable entry point that classifies the request and delegates to the right specialist:
 
-<agent>
-<name>CDS Creation</name>
-<description>CDS View Entity specialist for data modeling, associations, and compositions</description>
-<argumentHint>Describe the CDS view requirements</argumentHint>
-</agent>
+- **ABAP-Architect** — top-level orchestrator; delegates to all specialists below
+- **RAP-Analysis** — plans end-to-end RAP applications; orchestrates the six `task-*` agents
+- **SAP-Research** — clean core compliance and cloud-readiness research
+- **ABAP-Modernization** — legacy code analysis and modernization planning
+- **ABAP-Unit** — ABAP Unit test classes with test doubles (AAA pattern)
+- **amdp** — AMDP / SQLScript / HANA pushdown engineering
+- **task-cds-creation** — CDS view entities (interface / consumption / projection layers)
+- **task-bdef-creation** — behavior definitions (managed/unmanaged, draft, validations, actions)
+- **task-behavior-impl** — behavior pool classes with EML (handler/saver)
+- **task-dcl-security** — DCL row-level access control
+- **task-metadata-extension** — Fiori UI annotations (DDLX)
+- **task-service-definition** — OData service exposure (SRVD)
 
-<agent>
-<name>DCL Security</name>
-<description>DCL Access Control specialist for row-level authorization on CDS views</description>
-<argumentHint>Describe the access control requirements</argumentHint>
-</agent>
+The `task-*` agents and specialists are subagents (`user-invocable: false`); invoke them through ABAP-Architect or RAP-Analysis.
 
-<agent>
-<name>Metadata Extension</name>
-<description>Fiori UI Metadata Extension specialist for creating DDLX files with @UI annotations</description>
-<argumentHint>Describe the Fiori UI requirements</argumentHint>
-</agent>
+## Available Skills (`.github/skills/`)
 
-<agent>
-<name>Service Definition</name>
-<description>Service Definition specialist for exposing CDS views as OData services</description>
-<argumentHint>Describe the service exposure requirements</argumentHint>
-</agent>
+Skills auto-load based on the request — see [.github/skills/README.md](.github/skills/README.md) for the full index: get-object-info, search-object, where-used-search, create-ai-object, change-ai-object, activate-object, data-preview, sap-help-search, sap-community-search.
 
-<agent>
-<name>Explore</name>
-<description>Fast read-only codebase exploration and Q&A subagent. Prefer over manually chaining multiple search and file-reading operations to avoid cluttering the main conversation. Safe to call in parallel. Specify thoroughness: quick, medium, or thorough.</description>
-<argumentHint>Describe WHAT you're looking for and desired thoroughness (quick/medium/thorough)</argumentHint>
-</agent>
+## Non-Negotiable Rules for ABAP Work
 
-<agent>
-<name>amdp</name>
-<description>AMDP (ABAP Managed Database Procedures) specialist for SQLScript development, CDS table functions, and HANA pushdown optimization</description>
-<argumentHint>Describe the AMDP requirements including use case, data model, and constraints</argumentHint>
-</agent>
+1. **Read before write.** Inspect existing objects via `GetObjectInfo` / `SearchObject` before creating or modifying anything.
+2. **No guessing.** When field names, table structures, or syntax are uncertain, consult `sap_help_search` / `sap_community_search` first.
+3. **Confirmation before activation.** Show generated code to the user before calling `ActivateObject`.
+4. **Naming conventions.** `Z`/`Y` prefix for custom objects; `ZI_*` interface CDS, `ZC_*` consumption, `ZP_*` projection, `ZBP_AI_*` behavior pools.
+5. **Respect the sandbox.** Object creation and modification are intentionally restricted to the `$TMP` package — do not attempt to work around this.
 
-</agents>
+## Standard Development Workflow
 
----
+1. **Search** (`SearchObject`) → find related existing objects
+2. **Inspect** (`GetObjectInfo`) → study current implementations
+3. **Create/Change** (`CreateAIObject` / `ChangeAIObject`) → build in `$TMP`
+4. **Activate** (`ActivateObject`) → syntax check
 
-## Credits
+## Security Notes
 
-This extension's MCP server implementation builds upon excellent open-source work:
-
-- **[mcp-abap-adt](https://github.com/mario-andreschak/mcp-abap-adt)** by Mario Andreschak - ABAP ADT MCP server
-- **[mcp-sap-docs](https://github.com/marianfoo/mcp-sap-docs)** by Marian Zeis - SAP documentation MCP server
-
-See [THIRD_PARTY_LICENSES.md](../THIRD_PARTY_LICENSES.md) for license details.
-
+- `.vscode/mcp.json` contains SAP credentials — never commit it; keep it in `.gitignore`.
+- Never echo SAP passwords, hostnames, or proxy credentials into chat output, generated code, or documentation.

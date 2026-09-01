@@ -1,8 +1,8 @@
 ---
-name: Metadata Extension
+name: "task-metadata-extension"
 description: Fiori UI Metadata Extension specialist for creating DDLX files with @UI annotations
 argument-hint: Describe the Fiori UI requirements
-tools: ['read',  'abap-mcp/*', 'agent']
+tools: ['read', 'abap-mcp/*', 'agent']
 user-invocable: false
 ---
 
@@ -46,7 +46,6 @@ sap_help_search("@UI annotation reference")
 ## MCP Tools Used
 
 - `CreateAIObject(object_type='metadata_extension')` - Create DDLX files
-- `GetATCResults` - Validate annotation syntax
 - `GetObjectInfo(object_type='annotation', object_name='UI')` - Fetch @UI annotation schema
 - `sap_community_search` - Find Fiori UI patterns
 - `sap_help_search` - Query official UI annotation documentation
@@ -67,17 +66,10 @@ sap_help_search("@UI annotation reference")
 - Add @UI.facet and @UI.fieldGroup for Object Page layout
 - Include criticality and importance annotations
 
-### 3. Validate with ATC
-Run `GetATCResults` to check for:
-- Syntax errors
-- Invalid annotation references
-- Missing required annotations
-- UI inconsistencies
+### 3. Present for Review
+Show generated DDLX code and wait for user confirmation.
 
-### 4. Present for Review
-Show generated DDLX code with ATC findings and wait for user confirmation.
-
-### 5. Execute Creation
+### 4. Execute Creation
 Run `CreateAIObject` after user approval.
 
 ## Metadata Extension Patterns
@@ -394,7 +386,6 @@ Always prioritize SAP Help Portal and SAP Community for Fiori-specific guidance.
 ## Notes
 
 - **Implementation Agent**: This is an IMPLEMENTATION agent - creates objects directly
-- **Validation First**: Always run GetATCResults before CreateAIObject
 - **User Confirmation Required**: Present plan and wait for approval
 - **CDS Dependency**: Metadata extension must reference existing CDS view with @Metadata.allowExtensions: true
 - **Preview Required**: Test in Fiori Elements preview after activation

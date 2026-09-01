@@ -2,7 +2,7 @@
   "servers": {
     "abap-mcp": {
       "type": "stdio",
-      "command": "c:\\Users\\U475369\\.vscode\\extensions\\harieprasad.abap-mcp-1.0.0\\bin\\abap-mcp.exe",
+      "command": "c:\\Users\\U475369\\.vscode\\extensions\\harieprasad.abap-mcp-1.4.4\\bin\\abap-mcp-windows.exe",
       "env": {
         "SAP_URL": "https://hostname:port",
         "SAP_USERNAME": "sap_username",
@@ -16,7 +16,7 @@
     },
     "sap-odata": {
       "type": "stdio",
-      "command": "c:\\Users\\U475369\\.vscode\\extensions\\harieprasad.abap-mcp-1.0.0\\bin\\abap-mcp.exe",
+      "command": "c:\\Users\\U475369\\.vscode\\extensions\\harieprasad.abap-mcp-1.4.4\\bin\\abap-mcp-windows.exe",
       "args": [],
       "env": {
         "SAP_ODATA_HOST": "",

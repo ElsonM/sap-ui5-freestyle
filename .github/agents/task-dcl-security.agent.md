@@ -1,8 +1,8 @@
 ---
-name: DCL Security
+name: "task-dcl-security"
 description: DCL Access Control specialist for row-level authorization on CDS views
 argument-hint: Describe the access control requirements
-tools: ['read',  'abap-mcp/*', 'agent']
+tools: ['read', 'abap-mcp/*', 'agent']
 user-invocable: false
 ---
 
@@ -43,7 +43,6 @@ sap_help_search("DCL access conditions")
 ## MCP Tools Used
 
 - `CreateAIObject(object_type='dcl')` - Create DCL sources
-- `GetATCResults(object_type='DCLS')` - Validate DCL syntax
 - `GetObjectInfo` - Inspect CDS view structure for authorization fields
 - `sap_help_search` - Query DCL documentation
 - `sap_community_search` - Find authorization patterns
@@ -62,17 +61,10 @@ sap_help_search("DCL access conditions")
 - Add PFCG_AUTH checks if using authorization objects
 - Include @EndUserText.label and @MappingRole annotations
 
-### 3. Validate with ATC
-Run `GetATCResults` to check for:
-- Syntax errors
-- Invalid authorization objects
-- Missing conditions
-- Performance issues
+### 3. Present for Review
+Show generated DCL code and wait for user confirmation.
 
-### 4. Present for Review
-Show generated DCL code with ATC findings and wait for user confirmation.
-
-### 5. Execute Creation
+### 4. Execute Creation
 Run `CreateAIObject` after user approval.
 
 ## DCL Patterns
@@ -220,7 +212,6 @@ Always prioritize SAP Help Portal and SAP Community for ABAP-specific guidance.
 ## Notes
 
 - **Implementation Agent**: This is an IMPLEMENTATION agent - creates objects directly
-- **Validation First**: Always run GetATCResults before CreateAIObject
 - **User Confirmation Required**: Present plan and wait for approval
 - **CDS Dependency**: DCL must reference existing CDS view
 - **PFCG Coordination**: Work with security team for authorization object configuration

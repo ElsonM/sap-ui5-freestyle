@@ -1,8 +1,8 @@
 ---
-name: Service Definition
+name: "task-service-definition"
 description: Service Definition specialist for exposing CDS views as OData services
 argument-hint: Describe the service exposure requirements
-tools: ['read',  'abap-mcp/*', 'agent']
+tools: ['read', 'abap-mcp/*', 'agent']
 user-invocable: false
 ---
 
@@ -42,7 +42,6 @@ sap_help_search("service definition syntax")
 ## MCP Tools Used
 
 - `CreateAIObject(object_type='service_definition')` - Create service definition files
-- `GetATCResults` - Validate service definition syntax
 - `GetObjectInfo` - Inspect CDS views for exposure
 - `SearchObject` - Find existing CDS views
 - `sap_help_search` - Query service definition documentation
@@ -63,17 +62,10 @@ sap_help_search("service definition syntax")
 - Expose all related entities (associations, compositions)
 - Add @EndUserText.label annotation
 
-### 3. Validate with ATC
-Run `GetATCResults` to check for:
-- Syntax errors
-- Invalid CDS view references
-- Missing exposures
-- Naming violations
+### 3. Present for Review
+Show generated service definition code and wait for user confirmation.
 
-### 4. Present for Review
-Show generated service definition code with ATC findings and wait for user confirmation.
-
-### 5. Execute Creation
+### 4. Execute Creation
 Run `CreateAIObject` after user approval.
 
 ## Service Definition Patterns
@@ -253,7 +245,6 @@ Always prioritize SAP Help Portal and SAP Community for RAP service guidance.
 ## Notes
 
 - **Implementation Agent**: This is an IMPLEMENTATION agent - creates objects directly
-- **Validation First**: Always run GetATCResults before CreateAIObject
 - **User Confirmation Required**: Present plan and wait for approval
 - **CDS Dependency**: All exposed CDS views must exist and be activated
 - **Service Binding Next**: After creation, guide user to create service binding (manual ADT steps)

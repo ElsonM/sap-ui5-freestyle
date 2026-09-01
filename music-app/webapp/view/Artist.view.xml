@@ -19,6 +19,7 @@
                     </HBox>
                 </f:heading>
                 <f:actions>
+                    <Button icon="sap-icon://bar-chart" type="Transparent" press="onOpenStats" tooltip="Listening Stats"/>
                     <Button icon="sap-icon://palette" type="Transparent" press="onOpenThemePicker" tooltip="Change Theme"/>
                 </f:actions>
             </f:DynamicPageTitle>
@@ -34,8 +35,9 @@
                         <Button id="genreHipHop"     text="Hip-Hop"    press="onGenreFilter" class="genreChip" app:genre="hip-hop"/>
                         <Button id="genreElectronic" text="Electronic" press="onGenreFilter" class="genreChip" app:genre="electronic"/>
                         <Button id="genreJazz"       text="Jazz"       press="onGenreFilter" class="genreChip" app:genre="jazz"/>
-                        <Button id="genreFavorites"  icon="sap-icon://favorite" text="Favorites" press="onGenreFilter" class="genreChip genreChipFavorites" app:genre="favorites"/>
-                        <Button id="genreRecent"     icon="sap-icon://history"  text="Recent"    press="onGenreFilter" class="genreChip"                  app:genre="recent"/>
+                        <Button id="genreFavorites"  icon="sap-icon://favorite" text="Favorites"  press="onGenreFilter" class="genreChip genreChipFavorites" app:genre="favorites"/>
+                        <Button id="genreRecent"     icon="sap-icon://history"  text="Recent"     press="onGenreFilter" class="genreChip"                  app:genre="recent"/>
+                        <Button id="genrePlaylists"  icon="sap-icon://list"     text="Playlists"  press="onGenreFilter" class="genreChip"                  app:genre="playlists"/>
                     </HBox>
                 </VBox>
             </f:DynamicPageHeader>
@@ -64,7 +66,7 @@
                             <Text text="{music>rank}" class="{= ${music>rank} == 1 ? 'artistRank artistRankGold' : (${music>rank} == 2 ? 'artistRank artistRankSilver' : (${music>rank} == 3 ? 'artistRank artistRankBronze' : 'artistRank')) }"/>
                             <Avatar
                                 src="{music>icon}"
-                                fallbackIcon="sap-icon://person-placeholder"
+                                fallbackIcon="{= ${music>isPlaylist} ? 'sap-icon://list' : 'sap-icon://person-placeholder' }"
                                 displaySize="S"
                                 class="artistAvatar"/>
                             <VBox class="artistInfo">
@@ -75,13 +77,15 @@
                                         class="nowPlayingIcon"
                                         visible="{= ${player>/currentTrack/artistName} === ${music>name} &amp;&amp; ${player>/isPlaying} === true}"/>
                                 </HBox>
-                                <Text text="{path: 'music>listeners', formatter: '.formatListeners'}" class="artistListeners"/>
+                                <Text text="{path: 'music>listeners', formatter: '.formatListeners'}" class="artistListeners" visible="{= !${music>isPlaylist} }"/>
+                                <Text text="{music>listenersLabel}" class="artistListeners" visible="{= !!${music>isPlaylist} }"/>
                             </VBox>
                             <ToggleButton
                                 icon="sap-icon://favorite"
                                 type="Transparent"
                                 pressed="{music>favorite}"
                                 press="onToggleFavorite"
+                                visible="{= !${music>isPlaylist} }"
                                 class="favoriteToggleBtn"/>
                         </HBox>
                     </CustomListItem>
