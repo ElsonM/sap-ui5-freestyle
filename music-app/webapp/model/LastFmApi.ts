@@ -1,4 +1,5 @@
-const API_KEY = "8cb348e6db6272a85e8680988e863c6b";
+import { LASTFM_API_KEY as API_KEY } from "./config";
+
 const BASE = "https://ws.audioscrobbler.com/2.0";
 
 export async function getTopArtists(): Promise<any[]> {
@@ -37,6 +38,12 @@ export async function getSimilarArtists(artistName: string): Promise<any[]> {
     return data.similarartists?.artist ?? [];
 }
 
+export async function getArtistTopTracks(artistName: string): Promise<any[]> {
+    const res = await fetch(`${BASE}/?method=artist.gettoptracks&artist=${encodeURIComponent(artistName)}&api_key=${API_KEY}&format=json&limit=10`);
+    const data = await res.json();
+    return data.toptracks?.track ?? [];
+}
+
 export async function getAlbumInfo(artistName: string, albumName: string): Promise<any> {
     const res = await fetch(`${BASE}/?method=album.getinfo&artist=${encodeURIComponent(artistName)}&album=${encodeURIComponent(albumName)}&api_key=${API_KEY}&format=json`);
     const data = await res.json();
@@ -67,6 +74,12 @@ export function stripHtmlPreserveParagraphs(html: string): string {
         .replace(/[ \t]{2,}/g, " ")
         .replace(/\n{3,}/g, "\n\n")
         .trim();
+}
+
+export function extractLastFmImage(images: Array<{ size: string; "#text": string }> | undefined): string {
+    return images?.find(img => img.size === "extralarge")?.["#text"]
+        ?? images?.find(img => img.size === "large")?.["#text"]
+        ?? "";
 }
 
 export function extractYear(published: string): string {

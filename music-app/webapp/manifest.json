@@ -67,6 +67,13 @@
                     ]
                 },
                 {
+                    "name": "RouteStats",
+                    "pattern": "stats/:?query:",
+                    "target": [
+                        "TargetStats"
+                    ]
+                },
+                {
                     "name": "RouteArtistAlbums",
                     "pattern": "artist/{path}/:?query:",
                     "target": [
@@ -82,6 +89,14 @@
                         "TargetArtistAlbums",
                         "TargetAlbumDetails"
                     ]
+                },
+                {
+                    "name": "RoutePlaylistDetail",
+                    "pattern": "playlist/{id}/:?query:",
+                    "target": [
+                        "TargetArtist",
+                        "TargetPlaylistDetail"
+                    ]
                 }
             ],
             "targets": {
@@ -89,6 +104,13 @@
                     "viewType": "XML",
                     "viewId": "Artist",
                     "viewName": "Artist",
+                    "controlAggregation": "beginColumnPages",
+                    "clearControlAggregation": true
+                },
+                "TargetStats": {
+                    "viewType": "XML",
+                    "viewId": "Stats",
+                    "viewName": "Stats",
                     "controlAggregation": "beginColumnPages",
                     "clearControlAggregation": true
                 },
@@ -104,6 +126,13 @@
                     "viewId": "AlbumDetails",
                     "viewName": "AlbumDetails",
                     "controlAggregation": "endColumnPages",
+                    "clearControlAggregation": true
+                },
+                "TargetPlaylistDetail": {
+                    "viewType": "XML",
+                    "viewId": "PlaylistDetail",
+                    "viewName": "PlaylistDetail",
+                    "controlAggregation": "midColumnPages",
                     "clearControlAggregation": true
                 }
             }

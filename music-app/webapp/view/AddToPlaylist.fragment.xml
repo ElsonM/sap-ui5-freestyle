@@ -1,0 +1,35 @@
+<Popover
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    title="Add to Playlist"
+    contentWidth="18rem"
+    placement="Auto"
+    class="addToPlaylistPopover">
+    <content>
+        <List
+            items="{playlists>/list}"
+            showSeparators="None"
+            noDataText="No playlists yet"
+            class="addToPlaylistList">
+            <StandardListItem
+                title="{playlists>name}"
+                description="{= ${playlists>tracks}.length + (${playlists>tracks}.length === 1 ? ' track' : ' tracks') }"
+                type="Active"
+                press="onSelectPlaylistForAdd"
+                icon="sap-icon://list"/>
+        </List>
+        <HBox class="addToPlaylistNewRow" alignItems="Center">
+            <Input
+                placeholder="New playlist name"
+                value="{playlists>/newPlaylistName}"
+                submit="onCreatePlaylistAndAdd"
+                width="100%"
+                class="addToPlaylistInput"/>
+            <Button
+                icon="sap-icon://add"
+                type="Emphasized"
+                press="onCreatePlaylistAndAdd"
+                tooltip="Create playlist"/>
+        </HBox>
+    </content>
+</Popover>

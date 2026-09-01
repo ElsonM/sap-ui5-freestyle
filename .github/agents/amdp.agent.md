@@ -2,7 +2,7 @@
 name: amdp
 description: Research and plan end-to-end AMDP application development
 argument-hint: Describe the AMDP application requirements
-tools: ['read',  'abap-mcp/*', 'agent', 'todo']
+tools: ['read', 'web', 'abap-mcp/*', 'agent', 'todo']
 user-invocable: false
 ---
 
@@ -50,11 +50,11 @@ Design and deliver a production-grade AMDP solution for the given use case.
 3. **Type Definition Strategy (CRITICAL for AMDP)**
    - **MANDATORY**: All AMDP parameter types MUST use elementary types only
    - **VERIFICATION WORKFLOW (DO NOT SKIP)**:
-     1. **Primary Source**: Use `mcp_abap-mcp_GetTable` tool to fetch actual SAP table structures from the connected system
+     1. **Primary Source**: Use `GetObjectInfo` tool to fetch actual SAP table structures from the connected system
      2. **Reference Programs**: If SAP connection unavailable, examine existing working AMDP programs in the workspace (e.g., ZCL_PUL_GPI_STOCK_AMDP.abap) for proven field definitions
      3. **Never Assume**: DO NOT guess field types, lengths, or decimals - incorrect assumptions cause compilation errors
      4. **Cross-Validate**: When using reference programs, verify field names match your target tables by checking USING clause and SELECT statements
-     5. **Document Source**: Add comments indicating where type definitions came from (e.g., "From BKPF via mcp_abap-mcp_GetTable" or "Reference: ZCL_PUL_GPI_STOCK_AMDP.abap line 85")
+     5. **Document Source**: Add comments indicating where type definitions came from (e.g., "From BKPF via GetObjectInfo" or "Reference: ZCL_PUL_GPI_STOCK_AMDP.abap line 85")
    - **Elementary types allowed**: CHAR, NUMC, INT1, INT2, INT4, INT8, DEC, DATS, TIMS, CURR, QUAN, FLTP, STRING, RAW, RAWSTRING
    - **NOT allowed**: Dictionary types (bukrs, matnr, etc.), domain references, or nested structures
    - **Standard SAP field lengths** (reference guide):
@@ -237,7 +237,6 @@ Data model: BSID (customer items), KNA1 (customer master), VBRK (billing documen
 Constraints: Must run on BTP Cloud, max 5 second response time for 1M records
 ```
 
----
 
 ## Production-Proven AMDP Patterns
 
@@ -819,7 +818,6 @@ WHERE COALESCE(col, '') = ''  -- NULL-safe empty check for strings
 WHERE COALESCE(col, 0) = 0    -- NULL-safe zero check for numbers
 ```
 
----
 
 ### Dynamic SQL in AMDP
 
@@ -1004,7 +1002,6 @@ Dynamic SQL has overhead:
 **Benchmark Recommendation:**
 Test if dynamic overhead is acceptable for your use case. If table name is from limited set (e.g., 3 year-tables), consider factory pattern with 3 static AMDP methods instead.
 
----
 
 ## Program Optimization Checklist
 
@@ -1180,7 +1177,6 @@ grep '^E' VENTES_ORIGINAL.txt | awk '{sum+=$24} END {print sum}'
 grep '^E' VENTES_AMDP.txt | awk '{sum+=$24} END {print sum}'
 ```
 
----
 
 ## Best Practice Reference Resources
 
@@ -1225,7 +1221,6 @@ grep '^E' VENTES_AMDP.txt | awk '{sum+=$24} END {print sum}'
 9. **SAP HANA Academy - YouTube**
    - https://www.youtube.com/watch?v=fkU-H6iUQXI&list=PLqz8SLrkjv2ipD5e4SoycfP8wJIqZzPi0
    - AMDP tutorials, SQLScript deep dives
----
 
 ## Additional Instructions
 
@@ -1235,7 +1230,7 @@ grep '^E' VENTES_AMDP.txt | awk '{sum+=$24} END {print sum}'
 - Default client: 110
 
 **Critical Workflow Reminders:**
-- **Type Definition**: Follow Step 3 verification workflow - use `mcp_abap-mcp_GetTable` tool or reference programs (ZCL_PUL_GPI_STOCK_AMDP.abap, ZCL_PULVENTES93_AMDP.abap)
+- **Type Definition**: Follow Step 3 verification workflow - use `GetObjectInfo` tool or reference programs (ZCL_PUL_GPI_STOCK_AMDP.abap, ZCL_PULVENTES93_AMDP.abap)
 - **Field Name Verification**: Follow Step 4a - NEVER assume CDS field names, always read original program
 - **Client Handling**: Follow Step 5 - Use `CDS SESSION CLIENT current` for CDS views, explicit `SESSION_CONTEXT('CLIENT')` for direct tables
 - **Elementary Types Only**: CHAR, NUMC, DEC, INT, DATS, etc. - never dictionary types

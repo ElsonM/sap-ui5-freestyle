@@ -1,8 +1,9 @@
 ---
-name: RAP-Analysis
+name: "RAP-Analysis"
 description: Research and plan end-to-end RAP application development
 argument-hint: Describe the RAP application requirements
-tools: ['read',  'abap-mcp/*', 'agent', 'todo']
+tools: ['read', 'web', 'abap-mcp/*', 'agent', 'todo']
+agents: ["task-cds-creation", "task-dcl-security", "task-bdef-creation", "task-behavior-impl", "task-metadata-extension", "task-service-definition"]
 user-invocable: false
 ---
 
@@ -71,19 +72,19 @@ Available specialist implementation agents (reference only for planning):
 
 On invocation, automatically fetch relevant documentation:
 ```
-mcp_abap-mcp_sap_help_search({ query: "RAP managed scenario" })
-mcp_abap-mcp_sap_help_search({ query: "RESTful ABAP Programming Model" })
-mcp_abap-mcp_sap_community_search({ query: "RAP implementation patterns" })
-mcp_abap-mcp_sap_help_search({ query: "BDEF behavior definition syntax" })
-mcp_abap-mcp_sap_help_search({ query: "EML entity manipulation" })
+sap_help_search({ query: "RAP managed scenario" })
+sap_help_search({ query: "RESTful ABAP Programming Model" })
+sap_community_search({ query: "RAP implementation patterns" })
+sap_help_search({ query: "BDEF behavior definition syntax" })
+sap_help_search({ query: "EML entity manipulation" })
 ```
 
 ## MCP Tools Used
 
-- `mcp_abap-mcp_SearchObject` - Find existing CDS views, tables, business objects in system
-- `mcp_abap-mcp_GetObjectInfo` - Inspect existing objects for reference and dependencies
-- `mcp_abap-mcp_sap_help_search` - Fetch official SAP RAP documentation
-- `mcp_abap-mcp_sap_community_search` - Query SAP Community for best practices and patterns
+- `SearchObject` - Find existing CDS views, tables, business objects in system
+- `GetObjectInfo` - Inspect existing objects for reference and dependencies
+- `sap_help_search` - Fetch official SAP RAP documentation
+- `sap_community_search` - Query SAP Community for best practices and patterns
 - `runSubagent` - Delegate research tasks for comprehensive context gathering
 
 ## Workflow
@@ -98,7 +99,7 @@ If you catch yourself planning implementation steps for YOU to execute, STOP. Pl
 ### 1. Context Gathering and Research
 
 MANDATORY: Use runSubagent to gather comprehensive context autonomously:
-- Run mcp_abap-mcp_SearchObject to find existing related objects
+- Run SearchObject to find existing related objects
 - Inspect relevant CDS views, tables, structures via GetObjectInfo
 - Auto-fetch SAP documentation on RAP patterns
 - Research similar implementations in system

@@ -103,6 +103,7 @@
                                     <Column width="5rem" hAlign="End" demandPopin="true" minScreenWidth="Tablet">
                                         <Label text="Duration" class="trackColLabel"/>
                                     </Column>
+                                    <Column width="3rem" hAlign="End"/>
                                 </columns>
                                 <items>
                                     <ColumnListItem type="Active" press="onTrackPress" class="trackTableItem">
@@ -119,6 +120,12 @@
                                             </HBox>
                                             <Text text="{music>name}" class="trackName"/>
                                             <Text text="{music>duration}" class="trackDuration"/>
+                                            <Button
+                                                icon="sap-icon://add"
+                                                type="Transparent"
+                                                press="onAddToPlaylist"
+                                                tooltip="Add to playlist"
+                                                class="trackAddBtn"/>
                                         </cells>
                                     </ColumnListItem>
                                 </items>

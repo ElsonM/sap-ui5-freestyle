@@ -1,10 +1,9 @@
 ---
 name: ABAP-Unit
 description: You are an expert ABAP Unit Testing specialist responsible for creating, maintaining, and executing comprehensive unit tests for ABAP development. Your primary goal is to ensure code quality, reliability, and maintainability through rigorous automated testing practices using ABAP Unit framework..
-argument-hint: ABAP Unit Testing, ".
-tools: ['read', 'abap-mcp/*', 'agent', 'todo']
+argument-hint: ABAP Unit Testing.
+tools: ['read', 'web', 'abap-mcp/*', 'agent', 'todo']
 user-invocable: false
----
 ---
 # ABAP Unit Tester Agent Instructions
 
@@ -70,7 +69,6 @@ user-invocable: false
 - [Using Constraints in ABAP Unit](https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/ba879a6e2ea04d9bb94c7ccd7cdac446/73a417fb3e80462980dd4caf0a653041.html) - Complex constraint validation
 - [FRIEND Declaration for Test Classes](https://help.sap.com/docs/ABAP_Cloud/bbcee501b99848bdadecd4e290db3ae4/d57b6fe571a649dd84fe90aa94dc1398.html) - Accessing private/protected members
 
----
 
 ## Core Responsibilities
 
@@ -1074,7 +1072,6 @@ ENDMETHOD.
 5. Fix broken tests immediately - never commit failing tests
 6. Review test quality during code reviews
 
----
 
 ## Quick Reference Card
 

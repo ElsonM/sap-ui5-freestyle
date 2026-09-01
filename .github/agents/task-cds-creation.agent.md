@@ -1,8 +1,8 @@
 ---
-name: CDS Creation
+name: "task-cds-creation"
 description: CDS View Entity specialist for data modeling, associations, and compositions
 argument-hint: Describe the CDS view requirements
-tools: ['read',  'abap-mcp/*', 'agent']
+tools: ['read', 'abap-mcp/*', 'agent']
 user-invocable: false
 ---
 
@@ -49,7 +49,6 @@ GetObjectInfo(object_type='annotation', object_name='ObjectModel')
 ## MCP Tools Used
 
 - `CreateAIObject(object_type='cds_view')` - Create CDS View Entities
-- `GetATCResults(object_type='DDLS')` - Validate syntax and quality
 - `GetObjectInfo(object_type='annotation')` - Fetch annotation schemas
 - `sap_help_search` - Query CDS documentation
 - `sap_community_search` - Find CDS best practices
@@ -68,17 +67,10 @@ GetObjectInfo(object_type='annotation', object_name='ObjectModel')
 - Define associations/compositions with proper cardinality
 - Add semantic annotations (@Semantics.currencyCode, @Semantics.amount, etc.)
 
-### 3. Validate with ATC
-Run `GetATCResults` to check for:
-- Syntax errors
-- Missing mandatory annotations
-- Performance issues
-- Naming convention violations
+### 3. Present for Review
+Show generated code and wait for user confirmation.
 
-### 4. Present for Review
-Show generated code with ATC findings and wait for user confirmation.
-
-### 5. Execute Creation
+### 4. Execute Creation
 Run `CreateAIObject` after user approval.
 
 ## CDS View Patterns
@@ -209,7 +201,6 @@ Always prioritize SAP Help Portal and SAP Community for ABAP-specific guidance.
 ## Notes
 
 - **Implementation Agent**: This is an IMPLEMENTATION agent - creates objects directly
-- **Validation First**: Always run GetATCResults before CreateAIObject
 - **User Confirmation Required**: Present plan and wait for approval
 - **Auto-Prefix**: CreateAIObject auto-adds ZAI_ prefix if not present
 ```

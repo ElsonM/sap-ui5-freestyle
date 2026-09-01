@@ -1,8 +1,11 @@
 import Controller from "sap/ui/core/mvc/Controller";
 import UIComponent from "sap/ui/core/UIComponent";
 import JSONModel from "sap/ui/model/json/JSONModel";
+import Fragment from "sap/ui/core/Fragment";
+import MessageToast from "sap/m/MessageToast";
 import { getAlbumInfo, formatDuration, stripHtml, extractYear, toArray } from "../model/LastFmApi";
 import { playQueue } from "../model/YoutubePlayer";
+import { getPlaylists, createPlaylist, addTrackToPlaylist, PlaylistTrack } from "../model/Playlists";
 
 /**
  * @namespace at.clouddna.music.controller
@@ -11,6 +14,8 @@ export default class AlbumDetails extends Controller {
 
     private sArtistPath: string;
     private sAlbumPath: string;
+    private _addToPlaylistPopover: any = null;
+    private _pendingTrack: Omit<PlaylistTrack, "rank"> | null = null;
 
     public onInit(): void {
         (this.getOwnerComponent() as UIComponent).getRouter()
@@ -56,7 +61,8 @@ export default class AlbumDetails extends Controller {
         const artistName = oModel.getProperty("/currentAlbum/artistName");
         const albumName = oModel.getProperty("/currentAlbum/name");
         const albumImage = oModel.getProperty("/currentAlbum/image");
-        playQueue(tracks, artistName, albumName, albumImage, 0);
+        const genre = oModel.getProperty("/currentAlbum/genre");
+        playQueue(tracks, artistName, albumName, albumImage, 0, genre);
     }
 
     public onShuffle(): void {
@@ -69,7 +75,8 @@ export default class AlbumDetails extends Controller {
         const artistName = oModel.getProperty("/currentAlbum/artistName");
         const albumName = oModel.getProperty("/currentAlbum/name");
         const albumImage = oModel.getProperty("/currentAlbum/image");
-        playQueue(tracks, artistName, albumName, albumImage, 0);
+        const genre = oModel.getProperty("/currentAlbum/genre");
+        playQueue(tracks, artistName, albumName, albumImage, 0, genre);
     }
 
     public onTrackPress(oEvent: Event): void {
@@ -78,9 +85,56 @@ export default class AlbumDetails extends Controller {
         const artistName = oModel.getProperty("/currentAlbum/artistName");
         const albumName = oModel.getProperty("/currentAlbum/name");
         const albumImage = oModel.getProperty("/currentAlbum/image");
+        const genre = oModel.getProperty("/currentAlbum/genre");
         const rank = (oEvent as any).getSource().getBindingContext("music").getProperty("rank");
         const index = tracks.findIndex((t: any) => t.rank === rank);
-        playQueue(tracks, artistName, albumName, albumImage, index >= 0 ? index : 0);
+        playQueue(tracks, artistName, albumName, albumImage, index >= 0 ? index : 0, genre);
+    }
+
+    public async onAddToPlaylist(oEvent: Event): Promise<void> {
+        const oSource = (oEvent as any).getSource();
+        const track = oSource.getBindingContext("music")?.getObject();
+        const oModel = this.getOwnerComponent()?.getModel("music") as JSONModel;
+
+        this._pendingTrack = {
+            name: track.name,
+            duration: track.duration,
+            artistName: oModel.getProperty("/currentAlbum/artistName"),
+            albumName: oModel.getProperty("/currentAlbum/name"),
+            albumImage: oModel.getProperty("/currentAlbum/image")
+        };
+
+        if (!this._addToPlaylistPopover) {
+            this._addToPlaylistPopover = await (Fragment as any).load({
+                id: this.getView()?.getId(),
+                name: "at.clouddna.music.view.AddToPlaylist",
+                controller: this
+            });
+            this.getView()?.addDependent(this._addToPlaylistPopover);
+        }
+
+        (this.getOwnerComponent()?.getModel("playlists") as JSONModel).setProperty("/list", getPlaylists());
+        this._addToPlaylistPopover.openBy(oSource);
+    }
+
+    public onSelectPlaylistForAdd(oEvent: Event): void {
+        if (!this._pendingTrack) return;
+        const id = (oEvent as any).getSource().getBindingContext("playlists")?.getProperty("id");
+        const added = addTrackToPlaylist(id, this._pendingTrack);
+        this._addToPlaylistPopover?.close();
+        MessageToast.show(added ? "Added to playlist" : "Already in that playlist");
+    }
+
+    public onCreatePlaylistAndAdd(): void {
+        const oModel = this.getOwnerComponent()?.getModel("playlists") as JSONModel;
+        const name = ((oModel.getProperty("/newPlaylistName") as string) || "").trim();
+        if (!name || !this._pendingTrack) return;
+
+        const playlist = createPlaylist(name);
+        addTrackToPlaylist(playlist.id, this._pendingTrack);
+        oModel.setProperty("/newPlaylistName", "");
+        this._addToPlaylistPopover?.close();
+        MessageToast.show(`Created "${name}" and added track`);
     }
 
     public handleFullScreen() {

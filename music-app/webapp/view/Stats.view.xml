@@ -1,0 +1,69 @@
+<mvc:View
+    xmlns:f="sap.f"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    controllerName="at.clouddna.music.controller.Stats"
+    displayBlock="true">
+    <f:DynamicPage id="statsPage" headerExpanded="false" toggleHeaderOnTitleClick="false">
+        <f:title>
+            <f:DynamicPageTitle>
+                <f:heading>
+                    <HBox alignItems="Center">
+                        <core:Icon src="sap-icon://bar-chart" class="sapUiSmallMarginEnd musicLibIcon"/>
+                        <Title text="Listening Stats" level="H3"/>
+                    </HBox>
+                </f:heading>
+                <f:actions>
+                    <Button icon="sap-icon://decline" type="Transparent" press="onClose" tooltip="Back to Library"/>
+                </f:actions>
+            </f:DynamicPageTitle>
+        </f:title>
+        <f:content>
+            <VBox class="statsContent">
+                <HBox class="statsTileRow" wrap="Wrap">
+                    <VBox class="statsTile">
+                        <Text text="{stats>/totalPlays}" class="statsTileValue"/>
+                        <Text text="{= ${stats>/totalPlays} === 1 ? 'Track Played' : 'Tracks Played' }" class="statsTileLabel"/>
+                    </VBox>
+                    <VBox class="statsTile">
+                        <Text text="{stats>/streak}" class="statsTileValue"/>
+                        <Text text="Day Streak" class="statsTileLabel"/>
+                    </VBox>
+                </HBox>
+
+                <Title text="Top Artists" level="H5" class="statsSectionTitle"/>
+                <List
+                    items="{stats>/topArtists}"
+                    showSeparators="None"
+                    noDataText="No listening history yet — play something!"
+                    class="statsArtistList">
+                    <CustomListItem class="statsArtistItem">
+                        <HBox alignItems="Center" width="100%" class="statsArtistItemContent">
+                            <Text text="{stats>rank}" class="statsArtistRank"/>
+                            <Text text="{stats>name}" class="statsArtistName" maxLines="1" wrapping="false"/>
+                            <Text text="{= ${stats>count} + (${stats>count} === 1 ? ' play' : ' plays') }" class="statsArtistCount"/>
+                        </HBox>
+                    </CustomListItem>
+                </List>
+
+                <Title text="Genre Breakdown" level="H5" class="statsSectionTitle"/>
+                <List
+                    items="{stats>/genreBreakdown}"
+                    showSeparators="None"
+                    noDataText="No genre data yet"
+                    class="statsGenreList">
+                    <CustomListItem class="statsGenreItem">
+                        <VBox width="100%" class="statsGenreItemContent">
+                            <HBox justifyContent="SpaceBetween">
+                                <Text text="{stats>genre}" class="statsGenreName"/>
+                                <Text text="{= ${stats>percent} + '%' }" class="statsGenrePercent"/>
+                            </HBox>
+                            <ProgressIndicator percentValue="{stats>percent}" displayValue=" " class="statsGenreBar"/>
+                        </VBox>
+                    </CustomListItem>
+                </List>
+            </VBox>
+        </f:content>
+    </f:DynamicPage>
+</mvc:View>

@@ -1,7 +1,7 @@
 import JSONModel from "sap/ui/model/json/JSONModel";
-
-// Get a free key at https://console.cloud.google.com → Enable "YouTube Data API v3" → Credentials → API Key
-export const YOUTUBE_API_KEY = "AIzaSyB0zwZolmkguy1ysNxCaXxE4-gwhRTHXGY";
+import { YOUTUBE_API_KEY } from "./config";
+import { recordPlay } from "./ListeningStats";
+import { getSimilarArtists, getArtistTopTracks, formatDuration, extractLastFmImage } from "./LastFmApi";
 
 declare global {
     interface Window {
@@ -41,6 +41,7 @@ interface QueueItem {
     artistName: string;
     albumName: string;
     albumImage: string;
+    genre?: string;
 }
 
 function formatTime(seconds: number): string {
@@ -56,8 +57,38 @@ let progressTimer: ReturnType<typeof setInterval> | null = null;
 let ytReady = false;
 let pendingVideoId: string | null = null;
 
+const DEFAULT_TITLE = document.title;
+
+function updateMediaSession(track: { name: string; artistName: string; albumName: string; image?: string } | null): void {
+    document.title = track ? `${track.name} · ${track.artistName} — ${DEFAULT_TITLE}` : DEFAULT_TITLE;
+
+    if (!("mediaSession" in navigator)) return;
+
+    navigator.mediaSession.metadata = track
+        ? new MediaMetadata({
+            title: track.name,
+            artist: track.artistName,
+            album: track.albumName,
+            artwork: track.image ? [{ src: track.image, sizes: "300x300", type: "image/jpeg" }] : []
+        })
+        : null;
+}
+
+function setupMediaSessionHandlers(): void {
+    if (!("mediaSession" in navigator)) return;
+
+    navigator.mediaSession.setActionHandler("play", () => ytPlayer?.playVideo());
+    navigator.mediaSession.setActionHandler("pause", () => ytPlayer?.pauseVideo());
+    navigator.mediaSession.setActionHandler("previoustrack", () => skipToPrev());
+    navigator.mediaSession.setActionHandler("nexttrack", () => skipToNext());
+    navigator.mediaSession.setActionHandler("seekto", (details) => {
+        if (details.seekTime != null) ytPlayer?.seekTo(details.seekTime, true);
+    });
+}
+
 export function initYoutubePlayer(playerModel: JSONModel): void {
     model = playerModel;
+    setupMediaSessionHandlers();
     loadYouTubeScript();
 }
 
@@ -94,9 +125,11 @@ function loadYouTubeScript(): void {
                     const S = window.YT.PlayerState;
                     if (e.data === S.PLAYING) {
                         model?.setProperty("/isPlaying", true);
+                        if ("mediaSession" in navigator) navigator.mediaSession.playbackState = "playing";
                         startProgressTimer();
                     } else if (e.data === S.PAUSED) {
                         model?.setProperty("/isPlaying", false);
+                        if ("mediaSession" in navigator) navigator.mediaSession.playbackState = "paused";
                     } else if (e.data === S.ENDED) {
                         autoAdvance();
                     }
@@ -158,6 +191,7 @@ async function playAtIndex(index: number): Promise<void> {
         duration: item.duration,
         image: item.albumImage
     });
+    updateMediaSession({ name: item.name, artistName: item.artistName, albumName: item.albumName, image: item.albumImage });
 
     let videoId = item.videoId;
     if (videoId === undefined) {
@@ -174,6 +208,8 @@ async function playAtIndex(index: number): Promise<void> {
         return;
     }
 
+    recordPlay(item.artistName, item.name, item.genre);
+
     if (ytReady && ytPlayer) {
         loadAndPlay(videoId);
     } else {
@@ -186,11 +222,19 @@ export async function playQueue(
     artistName: string,
     albumName: string,
     albumImage: string,
+    startIndex: number = 0,
+    genre?: string
+): Promise<void> {
+    const queue: QueueItem[] = tracks.map(t => ({ ...t, artistName, albumName, albumImage, genre }));
+    await playCustomQueue(queue, startIndex);
+}
+
+export async function playCustomQueue(
+    tracks: Array<{ rank: number; name: string; duration: string; artistName: string; albumName: string; albumImage: string }>,
     startIndex: number = 0
 ): Promise<void> {
     if (!model) return;
-    const queue: QueueItem[] = tracks.map(t => ({ ...t, artistName, albumName, albumImage }));
-    model.setProperty("/queue", queue);
+    model.setProperty("/queue", tracks.map(t => ({ ...t })));
     model.setProperty("/visible", true);
     await playAtIndex(startIndex);
 }
@@ -210,6 +254,54 @@ function randomIndexExcluding(length: number, exclude: number): number {
     let next: number;
     do { next = Math.floor(Math.random() * length); } while (next === exclude);
     return next;
+}
+
+async function fetchRadioTracks(seedArtistName: string, existingQueue: QueueItem[]): Promise<QueueItem[]> {
+    try {
+        const similar = await getSimilarArtists(seedArtistName);
+        const existingArtists = new Set(existingQueue.map(t => t.artistName));
+        const candidate = similar.find((a: any) => !existingArtists.has(a.name)) ?? similar[0];
+        if (!candidate?.name) return [];
+
+        const topTracks = await getArtistTopTracks(candidate.name);
+        const existingTrackKeys = new Set(existingQueue.map(t => `${t.artistName}|${t.name}`));
+
+        return topTracks
+            .filter((t: any) => !existingTrackKeys.has(`${candidate.name}|${t.name}`))
+            .slice(0, 5)
+            .map((t: any, i: number) => ({
+                rank: existingQueue.length + i + 1,
+                name: t.name,
+                duration: formatDuration(Number(t.duration)),
+                artistName: candidate.name,
+                albumName: "Radio",
+                albumImage: extractLastFmImage(t.image)
+            }));
+    } catch {
+        return [];
+    }
+}
+
+async function extendQueueWithRadio(): Promise<void> {
+    if (!model) return;
+    const queue = model.getProperty("/queue") as QueueItem[];
+    const lastTrack = queue[queue.length - 1];
+    if (!lastTrack) return;
+
+    model.setProperty("/isLoading", true);
+    const newTracks = await fetchRadioTracks(lastTrack.artistName, queue);
+
+    if (!newTracks.length) {
+        model.setProperty("/isLoading", false);
+        ytPlayer?.pauseVideo();
+        model.setProperty("/isPlaying", false);
+        if (progressTimer) clearInterval(progressTimer);
+        return;
+    }
+
+    const startIndex = queue.length;
+    model.setProperty("/queue", [...queue, ...newTracks]);
+    await playAtIndex(startIndex);
 }
 
 function autoAdvance(): void {
@@ -238,6 +330,8 @@ export function skipToNext(): void {
         playAtIndex(index + 1);
     } else if (repeatMode === "all") {
         playAtIndex(0);
+    } else if (model.getProperty("/radioOn")) {
+        extendQueueWithRadio();
     } else {
         ytPlayer?.pauseVideo();
         model.setProperty("/isPlaying", false);
@@ -305,6 +399,7 @@ export function removeFromQueue(index: number): void {
             model.setProperty("/visible", false);
             model.setProperty("/currentTrack", null);
             model.setProperty("/queueIndex", -1);
+            updateMediaSession(null);
             if (progressTimer) clearInterval(progressTimer);
         } else {
             playAtIndex(Math.min(index, queue.length - 1));

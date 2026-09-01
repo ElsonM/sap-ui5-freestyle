@@ -8,6 +8,7 @@ import Filter from "sap/ui/model/Filter";
 import FilterOperator from "sap/ui/model/FilterOperator";
 import { getTopArtists, searchArtists, getArtistsByTag } from "../model/LastFmApi";
 import { THEMES, applyTheme, getSavedThemeId } from "../model/themes";
+import { getPlaylists } from "../model/Playlists";
 
 /**
  * @namespace at.clouddna.music.controller
@@ -29,6 +30,9 @@ export default class Artist extends Controller {
 
         (this.getOwnerComponent() as any).getEventBus().subscribe("Artist", "resetSelection", () => {
             (this.getView()?.byId("artistList") as List).removeSelections(true);
+            if (this._activeGenreButtonId === "genrePlaylists") {
+                this._applyPlaylists();
+            }
         });
 
         const raw = await getTopArtists();
@@ -61,6 +65,12 @@ export default class Artist extends Controller {
         if (genre === "recent") {
             this._applyFavoritesFilter(false);
             this._applyRecentArtists();
+            return;
+        }
+
+        if (genre === "playlists") {
+            this._applyFavoritesFilter(false);
+            this._applyPlaylists();
             return;
         }
 
@@ -182,6 +192,10 @@ export default class Artist extends Controller {
         });
     }
 
+    public onOpenStats(): void {
+        (this.getOwnerComponent() as UIComponent).getRouter().navTo("RouteStats");
+    }
+
     public async onOpenThemePicker(oEvent: Event): Promise<void> {
         const oSource = (oEvent as any).getSource();
         if (!this._themePopover) {
@@ -228,6 +242,17 @@ export default class Artist extends Controller {
 
         const oListItem = (oEvent as any).getParameters().listItem;
         const oCtx = oListItem.getBindingContext("music");
+
+        if (oCtx?.getProperty("isPlaylist")) {
+            const playlistId = oCtx.getProperty("playlistId");
+            const oNextUIState = (this.getOwnerComponent() as any).getHelper().getNextUIState(1);
+            (this.getOwnerComponent() as UIComponent).getRouter().navTo("RoutePlaylistDetail", {
+                id: encodeURIComponent(playlistId),
+                "?query": { layout: oNextUIState.layout }
+            });
+            return;
+        }
+
         const sName = oCtx?.getProperty("name");
         this._saveRecentArtist(oCtx?.getObject());
 
@@ -236,6 +261,20 @@ export default class Artist extends Controller {
             path: encodeURIComponent(sName),
             "?query": { layout: oNextUIState.layout }
         });
+    }
+
+    private _applyPlaylists(): void {
+        const playlists = getPlaylists();
+        const artists = playlists.map((p, i) => ({
+            name: p.name,
+            listenersLabel: `${p.tracks.length} track${p.tracks.length === 1 ? "" : "s"}`,
+            icon: "",
+            rank: i + 1,
+            favorite: false,
+            isPlaylist: true,
+            playlistId: p.id
+        }));
+        (this.getOwnerComponent()?.getModel("music") as JSONModel).setProperty("/artists", artists);
     }
 
     private _saveRecentArtist(artist: any): void {

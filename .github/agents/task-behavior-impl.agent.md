@@ -1,8 +1,8 @@
 ---
-name: Behavior Implementation
+name: "task-behavior-impl"
 description: RAP Behavior Implementation Class specialist for handler/saver classes with EML
 argument-hint: Describe the behavior implementation requirements
-tools: ['read',  'abap-mcp/*', 'agent']
+tools: ['read', 'abap-mcp/*', 'agent']
 user-invocable: false
 ---
 
@@ -45,7 +45,6 @@ sap_help_search("behavior pool class structure")
 ## MCP Tools Used
 
 - `CreateAIObject(object_type='class')` - Create behavior pool classes with multi-section support
-- `GetATCResults` - Validate class syntax
 - `GetObjectInfo` - Inspect BDEF structure
 - `sap_community_search` - Find RAP implementation patterns
 - `sap_help_search` - Query EML documentation
@@ -65,17 +64,10 @@ sap_help_search("behavior pool class structure")
 - Include proper variable naming conventions (lv_*, lt_*, ls_*)
 - Use RAP response structures (failed, reported, mapped)
 
-### 3. Validate with ATC
-Run `GetATCResults` to check for:
-- Syntax errors
-- EML usage issues
-- Missing method implementations
-- Variable naming violations
+### 3. Present for Review
+Show generated class code and wait for user confirmation.
 
-### 4. Present for Review
-Show generated class code with ATC findings and wait for user confirmation.
-
-### 5. Execute Creation
+### 4. Execute Creation
 Run `CreateAIObject` with multi-section source code after user approval.
 
 ## Multi-Section Structure
@@ -601,7 +593,6 @@ Always prioritize SAP Help Portal and SAP Community for RAP implementation guida
 ## Notes
 
 - **Implementation Agent**: This is an IMPLEMENTATION agent - creates objects directly
-- **Validation First**: Always run GetATCResults before CreateAIObject
 - **User Confirmation Required**: Present plan and wait for approval
 - **Multi-Section Required**: Use source_code object with main, definitions, implementations
 - **BDEF Dependency**: Create BDEF before behavior implementation class
